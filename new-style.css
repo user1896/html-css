@@ -1,0 +1,44 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+body{
+  background-color: gray;
+  text-align: justify;
+}
+h1, h2{
+  text-align: center;
+}
+header{
+  text-align: center;
+}
+main{
+  background-color: white;
+  text-align: center;
+  margin: 15px;
+  padding: 10px 0 15px 0;
+}
+main img{
+  max-width: 100%;
+  height: auto;
+}
+section{
+  max-width: 650px;
+  margin: auto;
+  padding: 20px 0 20px 0;
+}
+section ul{
+  padding: 30px 20px 20px 30px;
+}
+section ul li{
+  padding-top: 20px;
+}
+section q{
+  display: block;
+  padding: 30px 10px 20px 10px;
+}
+footer{
+  text-align: center;
+  padding: 20px 0 20px 0;
+  font-size: 1.2rem;
+}
