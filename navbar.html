@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://kit.fontawesome.com/713a6339de.js" crossorigin="anonymous"></script>
+  <style>
+  :root{
+    font-size: 16px;
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+  }
+
+  body{
+    color: black;
+    background-color: white;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  body::-webkit-scrollbar{
+    width: 0.5rem;
+  }
+  body::-webkit-scrollbar-track{
+    background-color: #1e1e24;
+  }
+  body::-webkit-scrollbar-thumb{
+    background-color: #6649b8;
+  }
+
+  main{
+    margin-left: 5rem;
+    padding: 1rem;
+  }
+
+  .navbar{
+    position: fixed;
+    background-color: var(--bg-primary);
+    transition: width 200ms ease;
+  }
+
+  .navbar-nav{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: inherit;
+  }
+
+  .nav-item{
+    width: 100%;
+  }
+
+  .nav-item:last-child{
+    margin-top: auto;
+  }
+
+  .nav-link{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: 5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.7);
+  }
+
+  .nav-link:hover{
+    filter: grayscale(0%) opacity(1);
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+  }
+
+  .link-text{
+    display: none;
+    margin-left: 1rem;
+  }
+
+  .nav-link i{
+    min-width: 2rem;
+    margin: 0 1.5rem;
+  }
+
+
+  i{
+    color: #ff7eee;
+  }
+
+  .logo{
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    background-color: var(--bg-secondary);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3ch;
+    width: 100%;
+  }
+
+  .logo i{
+    transform: rotate(0deg);
+    transition: transform 600ms;
+  }
+
+  .navbar:hover .logo i{
+    transform: rotate(-180deg);
+  }
+
+  @media only screen and (max-width: 600px) {
+    .navbar{
+      bottom: 0;
+      width: 100vw;
+      height: 5rem;
+    }
+    .logo{
+      display: none;
+    }
+    .navbar-nav{
+      flex-direction: row;
+    }
+    .nav-link{
+      justify-content: center;
+    }
+    main{
+      margin: 0px;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    .navbar{
+      top: 0;
+      width: 5rem;
+      height: 100vh;
+    }
+    .navbar:hover{
+      width: 16rem;
+    }
+    .navbar:hover .link-text{
+      display: inline;
+    }
+  }
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <ul class="navbar-nav">
+
+      <li class="logo">
+        <a href="#" class="nav-link">
+          <span class="link-text">Fireship</span>
+          <i class="fas fa-angle-double-right"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-cat"></i>
+          <span class="link-text">Cats</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fab fa-reddit-alien"></i>
+          <span class="link-text">Aliens</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-globe-africa"></i>
+          <span class="link-text">Space</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-rocket"></i>
+          <span class="link-text">Shuttle</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-cat"></i>
+          <span class="link-text">Cats</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>CSS is Cool</h1>
+    <p>
+      Around the turn of the millennium, spending on technology was volatile as companies prepared for the Year 2000 problem. There were concerns that computer systems would have trouble changing their clock and calendar systems from 1999 to 2000 which might trigger wider social or economic problems, but there was virtually no impact or disruption due to adequate preparation.[34]
+<br>
+On January 10, 2000, America Online, led by Steve Case and Ted Leonsis, announced a merger with Time Warner, led by Gerald M. Levin. The merger was the largest to date and was questioned by many analysts.[35]
+<br>
+On January 30, 2000, 12 ads of the 61 ads for Super Bowl XXXIV were purchased by dot-coms (sources state ranges from 12 up to 19 companies depending on the definition of dot-com company). At that time, the cost for a 30-second commercial cost between $1.9 million and $2.2 million.[36][37]
+<br>
+In 2000, Alan Greenspan, then Chair of the Federal Reserve, raised interest rates several times; these actions were believed by many to have caused the bursting of the dot-com bubble. According to Nobel laureate Paul Krugman, however, "he didn't raise interest rates to curb the market's enthusiasm; he didn't even seek to impose margin requirements on stock market investors. Instead, he waited until the bubble burst, as it did in 2000, then tried to clean up the mess afterward".[38] E. Ray Canterbery agrees with Krugman's criticism.[39] <br>
+<br>
+On Friday March 10, 2000, the NASDAQ Composite stock market index peaked at 5,048.62.[40]
+<br>
+On March 13, 2000, news that Japan had once again entered a recession triggered a global sell off that disproportionately affected technology stocks.[41]
+<br>
+On March 15, 2000, Yahoo! and eBay ended merger talks and the Nasdaq fell 2.6%, but the S&P 500 rose 2.4% as investors shifted from strong performing technology stocks to poor performing established stocks.[42]
+<br>
+On March 20, 2000, Barron's featured a cover article titled "Burning Up; Warning: Internet companies are running out of cash—fast", which predicted the imminent bankruptcy of many Internet companies.[43] This led many people to rethink their investments. That same day, MicroStrategy announced a revenue restatement due to aggressive accounting practices. Its stock price, which had risen from $7 per share to as high as $333 per share in a year, fell $140 per share, or 62%, in a day.[44] The next day, the Federal Reserve raised interest rates, leading to an inverted yield curve, although stocks rallied temporarily.[45]
+<br>
+On April 3, 2000, judge Thomas Penfield Jackson issued his conclusions of law in the case of United States v. Microsoft Corp. (2001) and ruled that Microsoft was guilty of monopolization and tying in violation of the Sherman Antitrust Act. This led to a one-day 15% decline in the value of shares in Microsoft and a 350-point, or 8%, drop in the value of the Nasdaq. Many people saw the legal actions as bad for technology in general.[46] That same day, Bloomberg News published a widely read article that stated: "It's time, at last, to pay attention to the numbers".[47] <br>
+<br>
+On Friday, April 14, 2000, the Nasdaq Composite index fell 9%, ending a week in which it fell 25%. Investors were forced to sell stocks ahead of Tax Day, the due date to pay taxes on gains realized in the previous year.[48]
+<br>
+By June 2000, dot-com companies were forced to re-evaluate their spending on advertising campaigns.[49]<br>
+<br>
+On November 9, 2000, Pets.com, a much-hyped company that had backing from Amazon.com, went out of business only nine months after completing its IPO.[50][51] By that time, most Internet stocks had declined in value by 75% from their highs, wiping out $1.755 trillion in value.[52]
+<br>
+In January 2001, just three dot-com companies bought advertising spots during Super Bowl XXXV.[53] The September 11 attacks accelerated the stock-market drop later that year.[54]
+<br>
+Investor confidence was further eroded by several accounting scandals and the resulting bankruptcies, including the Enron scandal in October 2001, the WorldCom scandal in June 2002,[55] and the Adelphia Communications Corporation scandal in July 2002.[56]
+<br>
+By the end of the stock market downturn of 2002, stocks had lost $5 trillion in market capitalization since the peak.[57] At its trough on October 9, 2002, the NASDAQ-100 had dropped to 1,114, down 78% from its peak.[
+    </p>
+    <p>
+      Around the turn of the millennium, spending on technology was volatile as companies prepared for the Year 2000 problem. There were concerns that computer systems would have trouble changing their clock and calendar systems from 1999 to 2000 which might trigger wider social or economic problems, but there was virtually no impact or disruption due to adequate preparation.[34]
+<br>
+On January 10, 2000, America Online, led by Steve Case and Ted Leonsis, announced a merger with Time Warner, led by Gerald M. Levin. The merger was the largest to date and was questioned by many analysts.[35]
+<br>
+On January 30, 2000, 12 ads of the 61 ads for Super Bowl XXXIV were purchased by dot-coms (sources state ranges from 12 up to 19 companies depending on the definition of dot-com company). At that time, the cost for a 30-second commercial cost between $1.9 million and $2.2 million.[36][37]
+<br>
+In 2000, Alan Greenspan, then Chair of the Federal Reserve, raised interest rates several times; these actions were believed by many to have caused the bursting of the dot-com bubble. According to Nobel laureate Paul Krugman, however, "he didn't raise interest rates to curb the market's enthusiasm; he didn't even seek to impose margin requirements on stock market investors. Instead, he waited until the bubble burst, as it did in 2000, then tried to clean up the mess afterward".[38] E. Ray Canterbery agrees with Krugman's criticism.[39] <br>
+<br>
+On Friday March 10, 2000, the NASDAQ Composite stock market index peaked at 5,048.62.[40]
+<br>
+On March 13, 2000, news that Japan had once again entered a recession triggered a global sell off that disproportionately affected technology stocks.[41]
+<br>
+On March 15, 2000, Yahoo! and eBay ended merger talks and the Nasdaq fell 2.6%, but the S&P 500 rose 2.4% as investors shifted from strong performing technology stocks to poor performing established stocks.[42]
+<br>
+On March 20, 2000, Barron's featured a cover article titled "Burning Up; Warning: Internet companies are running out of cash—fast", which predicted the imminent bankruptcy of many Internet companies.[43] This led many people to rethink their investments. That same day, MicroStrategy announced a revenue restatement due to aggressive accounting practices. Its stock price, which had risen from $7 per share to as high as $333 per share in a year, fell $140 per share, or 62%, in a day.[44] The next day, the Federal Reserve raised interest rates, leading to an inverted yield curve, although stocks rallied temporarily.[45]
+<br>
+On April 3, 2000, judge Thomas Penfield Jackson issued his conclusions of law in the case of United States v. Microsoft Corp. (2001) and ruled that Microsoft was guilty of monopolization and tying in violation of the Sherman Antitrust Act. This led to a one-day 15% decline in the value of shares in Microsoft and a 350-point, or 8%, drop in the value of the Nasdaq. Many people saw the legal actions as bad for technology in general.[46] That same day, Bloomberg News published a widely read article that stated: "It's time, at last, to pay attention to the numbers".[47] <br>
+<br>
+On Friday, April 14, 2000, the Nasdaq Composite index fell 9%, ending a week in which it fell 25%. Investors were forced to sell stocks ahead of Tax Day, the due date to pay taxes on gains realized in the previous year.[48]
+<br>
+By June 2000, dot-com companies were forced to re-evaluate their spending on advertising campaigns.[49]<br>
+<br>
+On November 9, 2000, Pets.com, a much-hyped company that had backing from Amazon.com, went out of business only nine months after completing its IPO.[50][51] By that time, most Internet stocks had declined in value by 75% from their highs, wiping out $1.755 trillion in value.[52]
+<br>
+In January 2001, just three dot-com companies bought advertising spots during Super Bowl XXXV.[53] The September 11 attacks accelerated the stock-market drop later that year.[54]
+<br>
+Investor confidence was further eroded by several accounting scandals and the resulting bankruptcies, including the Enron scandal in October 2001, the WorldCom scandal in June 2002,[55] and the Adelphia Communications Corporation scandal in July 2002.[56]
+<br>
+By the end of the stock market downturn of 2002, stocks had lost $5 trillion in market capitalization since the peak.[57] At its trough on October 9, 2002, the NASDAQ-100 had dropped to 1,114, down 78% from its peak.[
+    </p>
+  </main>
+</body>
+</html>

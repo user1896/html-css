@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/713a6339de.js" crossorigin="anonymous"></script>
+  <title>Document</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    html{
+      scroll-behavior: smooth;
+    }
+    body{
+      margin: 0px;
+    }
+    header nav{
+      background-color: #be3144;
+      width: 100%;
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+    }
+    header nav ul{
+      height: inherit;
+      padding-left: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      margin-right: 20px;
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+    }
+    header nav ul li{
+      padding: 20px;
+      text-align: center;
+      flex-basis: 33%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.6em;
+      font-weight: bold;
+    }
+    header nav ul li:hover{
+      background-color: gray;
+    }
+    header nav ul li a{
+      color: white;
+      text-decoration: none;
+    }
+    header div{
+      margin-top: 80px;
+      background-color: #303841;
+      height: 87vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    header div h1{
+      margin-top: 0px;
+      color: white;
+      font-size: 4em;
+      margin-bottom: 0px;
+    }
+    header div p{
+      color: #be3144;
+      font-size: 2em;
+      margin-top: 12px;
+    }
+
+    main{
+      width: 100%;
+      background-color: #45567d;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #main-title h2{
+      margin-top: 0px;
+      margin-bottom: 0px;
+      padding-top: 100px;
+      font-size: 3em;
+      color: white;
+      text-align: center;
+    }
+    #projects{
+      width: 96%;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      padding-left: 10px;
+      padding-right: 10px;
+      display: grid;
+      grid-gap: 40px;
+      grid-template-columns: repeat(auto-fill,minmax(313px,1fr));
+    }
+    #projects a{
+      color: black;
+      text-decoration: none;
+    }
+    .project{
+      border-radius: 2px;
+      height: 460px;
+      display: flex;
+      flex-direction: column;
+    }
+    .project .project_imag{
+      border-radius: 2px;
+      height: 85%;
+    }
+    .project_imag img{
+      height: 100%;
+      width: 100%;
+    }
+    .project .project_footer{
+      border-radius: 2px;
+      background-color: gray;
+      height: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.5em;
+      text-align: center;
+    }
+    main button{
+      background-color: gray;
+      padding: 10px;
+      color: white;
+      border-radius: 5px;
+      font-size: 1.4em;
+      margin-bottom: 100px;
+      transition: background-color 400ms;
+      box-shadow: none;
+    }
+    main button a{
+      color: white;
+      text-decoration: none;
+    }
+    main button:hover{
+      background-color: #be3144;
+    }
+    main button i{
+      transition: transform 400ms;
+    }
+    main button:hover i{
+      transform: translateX(5px);
+    }
+    footer{
+      background-color: #303841;
+    }
+    footer p{
+      color: white;
+    }
+    #footerP1{
+      text-align: center;
+      margin-top: 0px;
+      padding-top: 120px;
+      margin-bottom: 0px;
+      font-size: 4.3em;
+    }
+    #footerP2{
+      text-align: center;
+      margin-top: 5px;
+      font-size: 1.3em;
+      margin-bottom: 50px;
+    }
+    footer nav{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    footer nav ul{
+      list-style-type: none;
+      font-size: 1.6em;
+      width: 100%;
+      max-width: 980px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    footer nav ul li{
+      flex-basis: auto;
+      margin: 20px;
+    }
+    footer nav ul li a{
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      transition: color 1s, transform 0.3s ease-out;
+    }
+    footer nav ul li a:hover , footer nav ul li a:focus{
+      color: orange;
+      transform: translateY(8px);
+    }
+    footer hr{
+      height: 3px;
+      background-color: red;
+      border-color: red;
+    }
+    footer div{
+      font-size: 1.2em;
+      display: flex;
+      flex-direction: row;
+    }
+    #footerP3{
+      flex-basis: 65%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+    #footerP4{
+      margin-right: 30px;
+      flex-basis: 35%;
+      text-align: center;
+    }
+    #footerP4 a{
+      color: white;
+      text-decoration: none;
+    }
+    #footerP4 a i{
+      text-decoration: underline;
+    }
+  </style>
+
+</head>
+<body>
+
+  <header id="welcome-section">
+    <nav>
+      <ul>
+        <li><a href="#welcome-section">About</a></li>
+        <li><a href="#Work">Work</a></li>
+        <li><a href="#Contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h1>Hey I am Mimic</h1>
+      <p>a web developer</p>
+    </div>
+  </header>
+
+  <main id="Work">
+    <div id="main-title">
+      <h2>These are some of my projects</h2>
+      <hr>
+    </div>
+    <div id="projects">
+
+      <a href="https://codepen.io/freeCodeCamp/full/zNqgVx" target="_blank">
+        <div class="project">
+          <div class="project_imag">
+            <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/tribute.jpg" alt="project">
+          </div>
+          <div class="project_footer">Tribute Page</div>
+        </div>
+      </a>
+
+      <a href="https://codepen.io/freeCodeCamp/full/qRZeGZ" target="_blank">
+        <div class="project">
+          <div class="project_imag">
+            <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/random-quote-machine.png" alt="project">
+          </div>
+          <div class="project_footer">Random Quote Machine</div>
+        </div>
+      </a>
+
+      <a href="https://codepen.io/freeCodeCamp/full/wgGVVX" target="_blank">
+        <div class="project">
+          <div class="project_imag">
+            <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/calc.png" alt="project">
+          </div>
+          <div class="project_footer">JavaScript Calculator</div>
+        </div>
+      </a>
+
+      <a href="https://codepen.io/freeCodeCamp/full/mVEJag" target="_blank">
+        <div class="project">
+          <div class="project_imag">
+            <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/map.jpg" alt="project">
+          </div>
+          <div class="project_footer">Map Data Across the Globe</div>
+        </div>
+      </a>
+
+      <a href="https://codepen.io/freeCodeCamp/full/wGqEga" target="_blank">
+        <div class="project">
+          <div class="project_imag">
+            <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/wiki.png" alt="project">
+          </div>
+          <div class="project_footer">Wikipedia Viewer</div>
+        </div>
+      </a>
+
+      <a href="https://codepen.io/freeCodeCamp/full/KzXQgy" target="_blank">
+        <div class="project">
+          <div class="project_imag">
+            <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/tic-tac-toe.png" alt="project">
+          </div>
+          <div class="project_footer">Tic Tac Toe Game</div>
+        </div>
+      </a>
+
+    </div>
+      <button>
+        <a href="https://codepen.io/FreeCodeCamp/" target="_blank">
+          Show all <i class="fas fa-chevron-right"></i>
+        </a>
+      </button>
+  </main>
+
+  <footer id="Contact">
+    <p id="footerP1">Let's work together...</p>
+    <p id="footerP2">How do you take your coffee?</p>
+    <nav>
+      <ul>
+        <li><a href="#"><i class="fab fa-facebook-square"></i> Facebook</a></li>
+        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+        <li><a href="#"><i class="fas fa-at"></i> Send a mail</a></li>
+        <li><a href="#"><i class="fas fa-mobile-alt"></i> Call me</a></li>
+      </ul>
+    </nav>
+    <hr>
+    <div>
+      <p id="footerP3">**This is just a fake portfolio. All the projects and contact details given are not real.</p>
+      <!--<p id="footerP4">© Created for <a href="https://www.freecodecamp.org"> freeCodeCamp <i class="fab fa-free-code-camp"></i></a></p>-->
+      <p id="footerP4">© Created for
+        <a href="https://www.freecodecamp.org" target="_blank">freeCodeCamp <i class="fab fa-free-code-camp"></i></a></p>
+        <!--<p>&copy; Created for
+        <a href="https://www.freecodecamp.com/" target="_blank">freeCodeCamp <i class="fab fa-free-code-camp"></i></a></p>-->
+    </div>
+  </footer>
+</body>
+</html>

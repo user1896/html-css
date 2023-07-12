@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/713a6339de.js" crossorigin="anonymous"></script>
+  <title>Document</title>
+  <style>
+  *{
+    box-sizing: border-box;
+  }
+  html{
+    scroll-behavior: smooth;
+    scroll-padding: 100px;
+  }
+  body{
+    scroll-snap-align: start;
+    background-color: hsl(0, 0%, 90%);
+    margin: 0px;
+  }
+  header{
+    background-color: hsl(0, 0%, 90%);
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    display: flex;
+    justify-content: space-around;
+  }
+  header h1{
+    font-size: 20px;
+    flex-basis:55%;
+    margin-left: 70px;
+  }
+  header ul{
+    font-size: 14px;
+    width: 500px;
+    list-style-type: none;
+    flex-basis: 45%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  header ul li a{
+    color: black;
+    text-decoration: none;
+  }
+  @media (max-width: 650px) {
+    header{
+      justify-content: center;
+      align-items: center;
+    }
+    header ul{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h2{
+      margin-top: 130px;
+    }
+  }
+  @media (max-width: 600px) {
+    header{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    header h1{
+      margin-bottom: 0px;
+      margin-left: 0px;
+    }
+    header ul{
+      margin-top: 10px;
+    }
+    h2{
+      margin-top: 130px;
+    }
+  }
+  @media (min-width: 651px) {
+    h2{
+      margin-top: 65px;
+    }
+  }
+  h2{
+    font-size: 20px;
+    text-align: center;
+  }
+  #topForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+  }
+  #topForm input[type='email']{
+    border-radius: 5px;
+    width: 255px;
+    height: 30px;
+  }
+  #topForm input[type='submit']{
+    border-radius: 5px;
+    width: 140px;
+    height: 30px;
+    font-weight: bolder;
+    background-color: yellow;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  #topForm input[type='submit']:hover{
+    background-color: orange;
+  }
+  .mainDiv{
+    margin: auto;
+    margin-bottom: 70px;
+    max-width: 1000px;
+    display: flex;
+  }
+  .mainDivLogo{
+    flex-basis: 20%;
+    color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+  }
+  .mainDivText{
+    flex-basis: 80%;
+  }
+  @media (max-width: 550px) {
+    .mainDivLogo{
+      display: none;
+    }
+    .mainDivText{
+      flex-basis: 100%;
+    }
+  }
+  .mainDivTextStrong strong{
+    font-size: 20px;
+  }
+  .mainDivTextStrong{
+    margin-bottom: 5px;
+  }
+  .mainDivTextLight{
+    font-size: 14.5px;
+    margin-top: 0px;
+  }
+  @media (max-width: 550px) {
+    .mainDiv{
+      text-align: center;
+      width: 95%;
+    }
+  }
+  #videoDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 65px;
+  }
+  section{
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1000px;
+    margin-bottom: 40px;
+  }
+  .pricingDiv{
+    border: solid 1.5px;
+    border-radius: 5px;
+    flex-basis: 31%;
+    text-align: center;
+    height: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .PricingDivheader{
+    background-color: hsl(0,0%,80%);
+    flex-basis: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .pricingDivPrice{
+    flex-basis: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+  }
+  .pricingDivMain{
+    flex-basis: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .pricingDivFooter{
+    flex-basis: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .pricingDivFooter form input[type='submit']{
+    background-color: yellow;
+    height: 40px;
+    width: 100px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  .pricingDivFooter form input[type='submit']:hover{
+    background-color: orange;
+  }
+  @media (max-width:800px) {
+    section{
+      flex-direction: column;
+      height: 1000px;
+    }
+    .pricingDiv{
+      width: 300px;
+    }
+  }
+  footer{
+    background-color: hsl(0,0%,80%);
+    border-radius: 5px;
+    max-width: 1000px;
+    height: 80px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  footer ul{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin-right: 30px;
+    list-style-type: none;
+    margin-bottom: 0px;
+    font-size: 15px;
+  }
+  footer ul li a{
+    color: black;
+    text-decoration: none;
+  }
+  footer p{
+    color: hsl(0,0%,20%);
+    margin-right: 30px;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-guitar"></i>Original Trombones</h1>
+    <ul>
+      <li><a href="#Features">Features</a></li>
+      <li><a href="#videoDiv">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+  </header>
+
+  <main>
+
+      <h2>Handcrafted, home-made masterpieces</h2>
+      <form action="" id="topForm">
+        <input type="email" placeholder="Enter your email address" required>
+        <input type="submit" value="GET STARTED">
+      </form>
+
+    <div id="Features">
+      <div class="mainDiv">
+        <div class="mainDivLogo"><i class="fas fa-fire"></i></div>
+        <div class="mainDivText">
+          <p class="mainDivTextStrong"><strong>Premium Materials</strong></p>
+          <p class="mainDivTextLight">
+            Our trombones use the shiniest brass which is sourced locally. This will increase the longevity of your
+            purchase.
+          </p>
+        </div>
+      </div>
+      <div class="mainDiv">
+        <div class="mainDivLogo"><i class="fas fa-truck"></i></div>
+        <div class="mainDivText">
+          <p class="mainDivTextStrong"><strong>Fast Shipping</strong></p>
+          <p class="mainDivTextLight">
+            We make sure you recieve your trombone as soon as we have finished making it. We also provide free returns if you are
+            not satisfied.
+          </p>
+        </div>
+      </div>
+      <div class="mainDiv">
+        <div class="mainDivLogo"><i class="fas fa-battery-full"></i></div>
+        <div class="mainDivText">
+          <p class="mainDivTextStrong"><strong>Quality Assurance</strong></p>
+          <p class="mainDivTextLight">
+            For every purchase you make, we will ensure there are no damages or faults and we will check and test the pitch of
+            your instrument.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="videoDiv">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/y8Yv4pnO7qc" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <section id="pricing">
+        <div class="pricingDiv">
+          <div class="PricingDivheader">TENOR TROMBONE</div>
+          <div class="pricingDivPrice"><strong>$600</strong></div>
+          <div class="pricingDivMain">
+            Lorem ipsum. <br>
+            Lorem ipsum. <br>
+            Lorem ipsum dolor. <br>
+            Lorem ipsum. <br>
+          </div>
+          <div class="pricingDivFooter">
+            <form action="#">
+              <input type="hidden" name="price" value="tenor">
+              <input type="submit" value="SELECT">
+            </form>
+          </div>
+        </div>
+
+        <div class="pricingDiv">
+          <div class="PricingDivheader">BASS TROMBONE</div>
+          <div class="pricingDivPrice"><strong>$900</strong></div>
+          <div class="pricingDivMain">
+            Lorem ipsum. <br>
+            Lorem ipsum. <br>
+            Lorem ipsum dolor. <br>
+            Lorem ipsum. <br>
+          </div>
+          <div class="pricingDivFooter">
+            <form action="#">
+              <input type="hidden" name="price" value="bass">
+              <input type="submit" value="SELECT">
+            </form>
+          </div>
+        </div>
+
+        <div class="pricingDiv">
+          <div class="PricingDivheader">VALVE TROMBONE</div>
+          <div class="pricingDivPrice"><strong>$1200</strong></div>
+          <div class="pricingDivMain">
+            Plays similar to a Trumpet <br>
+            Great for Jazz Bands <br>
+            Lorem ipsum dolor. <br>
+            Lorem ipsum. <br>
+          </div>
+          <div class="pricingDivFooter">
+            <form action="#">
+              <input type="hidden" name="price" value="valve">
+              <input type="submit" value="SELECT">
+            </form>
+          </div>
+        </div>
+    </section>
+
+  </main>
+  <footer>
+    <ul>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <p>Copyright 2016, Original Trombones</p>
+  </footer>
+</body>
+</html>
