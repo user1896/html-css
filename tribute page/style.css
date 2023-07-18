@@ -1,6 +1,7 @@
 *{
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 body{
   background-color: gray;
@@ -15,30 +16,34 @@ header{
 main{
   background-color: white;
   text-align: center;
-  margin: 15px;
-  padding: 10px 0 15px 0;
+  margin: 1.5%;
+  padding: 2% 0 2% 0;
 }
 main img{
   max-width: 100%;
   height: auto;
 }
 section{
-  max-width: 650px;
+  max-width: 50%;
+  min-width: 350px;
+  background-color: aqua;
   margin: auto;
-  padding: 20px 0 20px 0;
+  padding: 2% 0 2% 0;
 }
+
+
 section ul{
-  padding: 30px 20px 20px 30px;
+  padding: 7%;
 }
 section ul li{
-  padding-top: 20px;
+  padding-top: 3%;
 }
 section q{
   display: block;
-  padding: 30px 10px 20px 10px;
+  padding: 4%;
 }
 footer{
   text-align: center;
-  padding: 20px 0 20px 0;
+  padding: 2% 0 2% 0;
   font-size: 1.2rem;
 }
