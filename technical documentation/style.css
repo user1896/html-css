@@ -1,6 +1,12 @@
 *{
   box-sizing: border-box;
   text-align: justify;
+  font-size: calc(1vw + 0.085rem);
+}
+@media (max-width: 1366px){
+  *{
+      font-size: 1rem;
+  }
 }
 html{
   scroll-behavior: smooth;
@@ -48,7 +54,8 @@ main{
 }
 main section header{
   font-weight: bold;
-  font-size: 1.5em;
+  /* font-size: 1.5em; */
+  font-size: calc(1vw + 1.3rem);
 }
 main section article{
   padding-left: 15px;
