@@ -1,5 +1,9 @@
 *{
   box-sizing: border-box;
+  --xxl-size : calc(1vw + 1.9rem);
+  --xl-size : calc(1vw + 1.3rem);
+  --l-size : calc(1vw + 0.8rem);
+  --s-size : calc(1vw + 0.085rem);
 }
 html{
   scroll-behavior: smooth;
@@ -19,12 +23,17 @@ header{
   justify-content: space-around;
 }
 header h1{
-  font-size: 20px;
+  font-size: var(--l-size);
   flex-basis:55%;
   margin-left: 70px;
 }
+@media (max-width: 1366px){
+  header h1{
+      font-size: calc(1vw + 1rem);
+  }
+}
 header ul{
-  font-size: 14px;
+  font-size: var(--s-size);
   width: 500px;
   list-style-type: none;
   flex-basis: 45%;
@@ -73,8 +82,13 @@ header ul li a{
   }
 }
 h2{
-  font-size: 20px;
+  font-size: var(--l-size);
   text-align: center;
+}
+@media (max-width: 1366px){
+  header h2{
+      font-size: calc(1vw + 1rem);
+  }
 }
 #topForm{
   display: flex;
@@ -94,7 +108,7 @@ h2{
   height: 30px;
   font-weight: bolder;
   background-color: yellow;
-  font-size: 16px;
+  font-size: var(--s-size);
   margin-top: 10px;
 }
 #topForm input[type='submit']:hover{
@@ -112,7 +126,7 @@ h2{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
+  font-size: var(--xxl-size);
 }
 .mainDivText{
   flex-basis: 80%;
@@ -126,13 +140,18 @@ h2{
   }
 }
 .mainDivTextStrong strong{
-  font-size: 20px;
+  font-size: var(--l-size);
+}
+@media (max-width: 1366px){
+  .mainDivTextStrong strong{
+      font-size: calc(1vw + 1rem);
+  }
 }
 .mainDivTextStrong{
   margin-bottom: 5px;
 }
 .mainDivTextLight{
-  font-size: 14.5px;
+  font-size: var(--s-size);
   margin-top: 0px;
 }
 @media (max-width: 550px) {
@@ -171,7 +190,7 @@ section{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 15px;
+  font-size: var(--s-size);
   font-weight: bold;
 }
 .pricingDivPrice{
@@ -179,7 +198,12 @@ section{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 22px;
+  font-size: var(--l-size);
+}
+@media (max-width: 1366px){
+  .pricingDivPrice{
+      font-size: calc(1vw + 1rem);
+  }
 }
 .pricingDivMain{
   flex-basis: 40%;
@@ -197,7 +221,7 @@ section{
   background-color: yellow;
   height: 40px;
   width: 100px;
-  font-size: 16px;
+  font-size: var(--s-size);
   border-radius: 5px;
 }
 .pricingDivFooter form input[type='submit']:hover{
@@ -230,7 +254,7 @@ footer ul{
   margin-right: 30px;
   list-style-type: none;
   margin-bottom: 0px;
-  font-size: 15px;
+  font-size: var(--s-size);
 }
 footer ul li a{
   color: black;
@@ -240,5 +264,11 @@ footer p{
   color: hsl(0,0%,20%);
   margin-right: 30px;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: var(--s-size);
+}
+@media (max-width: 1366px){
+  footer ul , footer p , .pricingDivFooter form input[type='submit'] , .PricingDivheader ,
+  .mainDivTextLight , #topForm input[type='submit'] , header ul{
+      font-size: 1rem;
+  }
 }
