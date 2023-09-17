@@ -5,24 +5,30 @@
     color: white;
 }
 body{
-    margin: 0px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZGV2ZWxvcGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
   }
-  header{
+header{
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
-  }
-  main{
+}
+header h1{
+  font-size: clamp(2rem, 1vw + 1.9rem, 5rem);
+}
+main{
     background-color: rgba(27, 27, 50,0.5);
-    padding-top: 20px;
-    padding-bottom: 20px;
-    max-width: 720px;
+    width: clamp(700px, 70%, 1600px);
     margin: auto;
+    font-size: clamp(1rem, 1vw + 0.085rem, 2rem);
+}
+@media (max-width: 700px){
+  main{
+    width: 100%;
   }
-  form{
+}
+form{
     padding: 20px;
-  }
+}
