@@ -2,13 +2,13 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: white;
 }
 body{
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZGV2ZWxvcGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    color: white;
   }
 header{
     text-align: center;
@@ -20,15 +20,46 @@ header h1{
 }
 main{
     background-color: rgba(27, 27, 50,0.5);
-    width: clamp(700px, 70%, 1600px);
+    width: clamp(600px, 40%, 1600px);
     margin: auto;
-    font-size: clamp(1rem, 1vw + 0.085rem, 2rem);
+    font-size: clamp(1rem, 1vw + 0.8rem, 3rem);
 }
 @media (max-width: 700px){
   main{
     width: 100%;
   }
 }
+input, select{
+  height: 2rem;
+}
+input, select, textarea{
+  margin-top: 10px;
+}
+.input_block{
+  margin-bottom: 15px;
+}
+input,textarea,select{
+  font-size: clamp(1rem, 1vw + 0.085rem, 2rem);
+  color: black;
+}
+input[type="text"], input[type="email"], input[type="number"], select, textarea, input[type="submit"]{
+  width: 100%;
+  border-radius: 5px;
+}
+input[type="submit"]{
+  background-color: hsl(120,50%,50%);
+}
+option{
+  font-size: 1rem;
+}
 form{
-    padding: 20px;
+    padding: 2rem;
+}
+.flex_checkbox{
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+.flex_checkbox label{
+  margin-left: 10px;
 }
