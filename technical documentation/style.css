@@ -1,98 +1,94 @@
 *{
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   text-align: justify;
-  font-size: calc(1vw + 0.085rem);
-}
-@media (max-width: 1366px){
-  *{
-      font-size: 1rem;
-  }
 }
 html{
   scroll-behavior: smooth;
 }
 body{
-  margin: 0px;
-  padding-top: 0px;
-  margin-top: 0px;
+  color: white;
 }
-nav{
-  background-color: orange;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 300px;
+#navbar{
+  background-color: rgb(102, 36, 164);
+  width: 22%;
   height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
-nav header{
-  /*margin: 0px;*/
-  padding: 10px;
+#navbar header{
   text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-nav div{
+#navbar div{
   height: 90%;
   overflow-y: auto;
   overflow-x: hidden;
 }
-nav div p{
+#navbar div p{
   border-top: solid 1px;
-  padding-top: 13px;
-}
-nav p a{
-  text-decoration: none;
-  color: black;
+  padding-top: 10px;
+  padding-bottom: 10px;
   padding-left: 30px;
 }
-main{
-  position: absolute;
-  top: 0px;
-  left: 300px;
-  padding: 40px;
-  padding-top: 0px;
-  background-color: gray;
-  max-width: 1050px;
+#navbar div p a{
+  text-decoration: none;
+  color: white;
 }
-main section header{
-  font-weight: bold;
-  /* font-size: 1.5em; */
-  font-size: calc(1vw + 1.3rem);
-}
-main section article{
-  padding-left: 15px;
-}
-main section article ul li:first-child{
-  padding-top: 0px;
-}
-main section article ul li{
-  padding-top: 20px;
-}
-main section article ul li ul li{
-  padding-top: 20px !important;
-}
-main section article code{
-  display: block;
-  background-color: #f7f7f7;
-  border-radius: 5px;
-  padding: 15px;
-  margin: 10px;
+#main-doc{
+  background-color: rgb(65, 73, 81);
+  width: 78%;
+  margin-left: 22%;
 }
 @media (max-width: 815px) {
-  nav{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 300px;
-    width: 100%;
+  #navbar{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 300px;
+      width: 100%;
   }
-  nav div{
-    border: solid 2px;
+  #navbar div{
+      height: 80%;
   }
-  main{
-    margin-top: 0px;
-    padding-top: 0px;
-    top: 300px;
-    left: 0px;
-    width: 100%;
-    background-color: green;
+  #main-doc{
+      margin-top: 300px;
+      margin-left: 0%;
+      width: 100%;
   }
+}
+.main-section{
+  padding-left: 35px;
+  padding-right: 35px;
+}
+.main-section header{
+  font-size: 2rem;
+  padding-bottom: 20px;
+}
+.main-section article{
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+.main-section article p{
+  padding-bottom: 20px;
+}
+.main-section article ul{
+  padding-left: 40px;
+  padding-bottom: 10px;
+}
+.main-section article ul :not(:first-child){
+  padding-top: 20px;
+}
+.main-section article code{
+  display: block;
+  border: solid 1px;
+  border-radius: 5px;
+  background-color: rgb(21, 34, 47);
+  padding: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
 }
