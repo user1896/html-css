@@ -1,185 +1,167 @@
 *{
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  --xxl-size : calc(1vw + 1.9rem);
-  --xl-size : calc(1vw + 1.3rem);
-  --l-size : calc(1vw + 0.8rem);
-  --s-size : calc(1vw + 0.085rem);
+  text-align: justify;
 }
 html{
   scroll-behavior: smooth;
   scroll-padding: 100px;
 }
 body{
-  scroll-snap-align: start;
-  background-color: hsl(0, 0%, 90%);
-  margin: 0px;
+  background-color: hsl(0,0%,95%);
 }
-header{
-  background-color: hsl(0, 0%, 90%);
-  position: fixed;
-  width: 100%;
-  top: 0px;
+.flex-center{
   display: flex;
-  justify-content: space-around;
-}
-header h1{
-  font-size: var(--l-size);
-  flex-basis:55%;
-  margin-left: 70px;
-}
-@media (max-width: 1366px){
-  header h1{
-      font-size: calc(1vw + 1rem);
-  }
-}
-header ul{
-  font-size: var(--s-size);
-  width: 500px;
-  list-style-type: none;
-  flex-basis: 45%;
-  display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
+
+/* header */
+header div{
+  background-color: hsl(0,0%,80%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: fixed;
+  width: 100vw;
+  max-width: 1920px;
+  top: 0;
+}
+@media (max-width: 600px){
+  header{
+      flex-direction: column;
+  }
+  html{
+      scroll-padding: 135px;
+  }
+}
+header h1{
+  flex-basis: 55%;
+  text-align: center;
+}
+header ul{
+  flex-basis: 45%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  list-style: none;
+}
+@media (max-width: 650px){
+  header ul{
+      flex-direction: column;
+  }
+  header ul li{
+      padding-bottom: 5px;
+  }
+}
+header ul li{
+  padding-left: 10px;
+  transition: scale 250ms;
+}
+header ul li:hover{
+  scale: 1.05;
+}
 header ul li a{
-  color: black;
   text-decoration: none;
+  color: black;
+  transition: color 250ms;
 }
-@media (max-width: 650px) {
-  header{
-    justify-content: center;
-    align-items: center;
-  }
-  header ul{
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  h2{
-    margin-top: 130px;
-  }
+header ul li a:hover,header ul li a:focus{
+  color: rgb(176, 114, 0);
 }
-@media (max-width: 600px) {
-  header{
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  header h1{
-    margin-bottom: 0px;
-    margin-left: 0px;
-  }
-  header ul{
-    margin-top: 10px;
-  }
-  h2{
-    margin-top: 130px;
-  }
+
+/* main (h2 and form) */
+main{
+  margin-top: 100px;
 }
-@media (min-width: 651px) {
-  h2{
-    margin-top: 65px;
+@media (max-width: 600px){
+  main{
+      margin-top: 150px;
   }
 }
 h2{
-  font-size: var(--l-size);
   text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
-@media (max-width: 1366px){
-  header h2{
-      font-size: calc(1vw + 1rem);
-  }
-}
-#topForm{
-  display: flex;
+form{
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 100px;
 }
-#topForm input[type='email']{
-  border-radius: 5px;
-  width: 255px;
-  height: 30px;
+form input{
+  border-radius: 3px;
+  padding: 5px;
 }
-#topForm input[type='submit']{
-  border-radius: 5px;
-  width: 140px;
-  height: 30px;
-  font-weight: bolder;
-  background-color: yellow;
-  font-size: var(--s-size);
-  margin-top: 10px;
+form input[type="email"]{
+  width: 250px;
+  margin-bottom: 3px;
 }
-#topForm input[type='submit']:hover{
-  background-color: orange;
+form input[type="submit"]{
+  width:110px;
+  font-weight: bold;
+  transition: scale 400ms, background-color 400ms;
+}
+form input[type="submit"]:hover, form input[type="submit"]:focus{
+  scale: 1.05;
+  background-color: rgb(240, 207, 144);
+}
+
+/* Features */
+#Features{
+  max-width: 1920px;
+  margin: auto;
+  margin-top: 50px;
 }
 .mainDiv{
-  margin: auto;
-  margin-bottom: 70px;
-  max-width: 1000px;
-  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
 }
 .mainDivLogo{
-  flex-basis: 20%;
+  flex-basis: 25%;
+  font-size: 3rem;
   color: orange;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--xxl-size);
 }
 .mainDivText{
-  flex-basis: 80%;
-}
-@media (max-width: 550px) {
-  .mainDivLogo{
-    display: none;
-  }
-  .mainDivText{
-    flex-basis: 100%;
-  }
-}
-.mainDivTextStrong strong{
-  font-size: var(--l-size);
-}
-@media (max-width: 1366px){
-  .mainDivTextStrong strong{
-      font-size: calc(1vw + 1rem);
-  }
+  flex-basis: 74%;
 }
 .mainDivTextStrong{
-  margin-bottom: 5px;
+  font-size: 2rem;
 }
-.mainDivTextLight{
-  font-size: var(--s-size);
-  margin-top: 0px;
-}
-@media (max-width: 550px) {
-  .mainDiv{
-    text-align: center;
-    width: 95%;
+@media (max-width: 600px){
+  .mainDivLogo{
+      display: none;
+  }
+  .mainDivText{
+      flex-basis: 95%;
+      text-align: center;
+  }
+  .mainDivTextStrong{
+      text-align: center;
+  }
+  .mainDivTextLight{
+      text-align: center;
   }
 }
-#videoDiv{
+
+/* pricing */
+#pricing{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 65px;
-}
-section{
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  max-width: 1920px;
   margin: auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  max-width: 1000px;
-  margin-bottom: 40px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 .pricingDiv{
-  border: solid 1.5px;
-  border-radius: 5px;
-  flex-basis: 31%;
-  text-align: center;
-  height: 310px;
+  background-color: hsl(0,0%,90%);
+  width: 25%;
+  height: 300px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -187,88 +169,54 @@ section{
 .PricingDivheader{
   background-color: hsl(0,0%,80%);
   flex-basis: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--s-size);
-  font-weight: bold;
+  text-align: center;
 }
 .pricingDivPrice{
   flex-basis: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--l-size);
-}
-@media (max-width: 1366px){
-  .pricingDivPrice{
-      font-size: calc(1vw + 1rem);
-  }
+  text-align: center;
 }
 .pricingDivMain{
   flex-basis: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 .pricingDivFooter{
   flex-basis: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
-.pricingDivFooter form input[type='submit']{
-  background-color: yellow;
-  height: 40px;
-  width: 100px;
-  font-size: var(--s-size);
-  border-radius: 5px;
-}
-.pricingDivFooter form input[type='submit']:hover{
-  background-color: orange;
-}
-@media (max-width:800px) {
-  section{
-    flex-direction: column;
-    height: 1000px;
+@media (max-width:800px){
+  #pricing{
+      flex-direction: column;
   }
   .pricingDiv{
-    width: 300px;
+      width: 300px;
+  }
+  .pricingDiv:not(:first-child){
+      margin-top: 20px;
   }
 }
+
+/* footer */
 footer{
-  background-color: hsl(0,0%,80%);
-  border-radius: 5px;
-  max-width: 1000px;
-  height: 80px;
+  max-width: 1920px;
   margin: auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
+  align-items: end;
+  padding: 20px;
+  background-color: hsl(0,0%,80%);
 }
 footer ul{
-  display: flex;
-  justify-content: space-between;
   width: 200px;
-  margin-right: 30px;
-  list-style-type: none;
-  margin-bottom: 0px;
-  font-size: var(--s-size);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  justify-content: space-between;
+  font-weight: bold;
 }
-footer ul li a{
-  color: black;
+footer ul a{
   text-decoration: none;
 }
 footer p{
-  color: hsl(0,0%,20%);
-  margin-right: 30px;
   margin-top: 10px;
-  font-size: var(--s-size);
-}
-@media (max-width: 1366px){
-  footer ul , footer p , .pricingDivFooter form input[type='submit'] , .PricingDivheader ,
-  .mainDivTextLight , #topForm input[type='submit'] , header ul{
-      font-size: 1rem;
-  }
 }
