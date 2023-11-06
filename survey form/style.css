@@ -16,18 +16,22 @@ header{
     padding-bottom: 20px;
 }
 header h1{
-  font-size: clamp(2rem, 1vw + 1.9rem, 5rem);
+    font-size: clamp(2rem, 1vw + 1.9rem, 5rem);
 }
 main{
     background-color: rgba(27, 27, 50,0.5);
-    width: clamp(600px, 40%, 1600px);
     margin: auto;
     font-size: clamp(1rem, 1vw + 0.8rem, 3rem);
 }
-@media (max-width: 700px){
-  main{
-    width: 100%;
+@media (min-width: 700px){
+    main{
+        width: clamp(600px, 40%, 1600px);
+    }
   }
+@media (max-width: 700px){
+    main{
+        width: 100%;
+    }
 }
 input, select{
   height: 2rem;
