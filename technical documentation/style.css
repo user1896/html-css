@@ -1,25 +1,29 @@
 *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-align: justify;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: justify;
 }
 html{
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 body{
-  color: white;
+    color: white;
 }
 #navbar{
-  background-color: rgb(102, 36, 164);
+    background-color: rgb(102, 36, 164);
 }
 @media (min-width: 815px) {
     #navbar{
         position: fixed;
         top: 0;
         left: 0;
-        width: 22%;
+        width: 3rem;
         height: 100vh;
+        transition: width 200ms ease;
+    }
+    #navbar:hover{
+        width: 15rem;
     }
 }
 @media (max-width: 815px) {
@@ -32,17 +36,41 @@ body{
     }
 }
 #navbar header{
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+@media (min-width: 815px) {
+    #navbar header{
+        height: 100%;
+    }
+    #navbar:hover header{
+        height: 3rem;
+    }
+    #navbar header span{
+        rotate: 90deg;
+    }
+    #navbar:hover header span{
+        rotate: 0deg;
+    }
+}
+@media (max-width: 815px) {
+    #navbar header{
+        height: 3rem;
+    }
 }
 #navbar div{
-  overflow-y: auto;
-  overflow-x: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 @media (min-width: 815px) {
     #navbar div{
-        height: 90%;
+        height: calc(100% - 3rem);
+        display: none;
+    }
+    #navbar:hover div{
+        display: block;
     }
 }
 @media (max-width: 815px) {
@@ -51,60 +79,59 @@ body{
     }
 }
 #navbar div p{
-  border-top: solid 1px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 30px;
+    border-top: solid 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
 }
 #navbar div p a{
-  text-decoration: none;
-  color: white;
+    text-decoration: none;
+    color: white;
 }
 #main-doc{
-  background-color: rgb(65, 73, 81);
+    background-color: rgb(65, 73, 81);
 }
 @media (min-width: 815px) {
     #main-doc{
-        margin-left: 22%;
-        width: 78%;
+        margin-left: 3rem;
     }
 }
 @media (max-width: 815px) {
-  #main-doc{
-      margin-top: 300px;
-      margin-left: 0%;
-      width: 100%;
-  }
+    #main-doc{
+        margin-top: 300px;
+        margin-left: 0%;
+        width: 100%;
+    }
 }
 .main-section{
-  padding-left: 35px;
-  padding-right: 35px;
+    padding-left: 35px;
+    padding-right: 35px;
 }
 .main-section header{
-  font-size: 2rem;
-  padding-bottom: 20px;
+    font-size: 2rem;
+    padding-bottom: 20px;
 }
 .main-section article{
-  padding-bottom: 20px;
-  padding-left: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
 }
 .main-section article p{
-  padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 .main-section article ul{
-  padding-left: 40px;
-  padding-bottom: 10px;
+    padding-left: 40px;
+    padding-bottom: 10px;
 }
 .main-section article ul :not(:first-child){
-  padding-top: 20px;
+    padding-top: 20px;
 }
 .main-section article code{
-  display: block;
-  border: solid 1px;
-  border-radius: 5px;
-  background-color: rgb(21, 34, 47);
-  padding: 15px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 20px;
+    display: block;
+    border: solid 1px;
+    border-radius: 5px;
+    background-color: rgb(21, 34, 47);
+    padding: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
 }
