@@ -7,6 +7,15 @@
 html{
     scroll-behavior: smooth;
 }
+@media (max-width: 815px) {
+    /*
+        When the screen size is small, the fixed nav-bar will take '3rem' of space at the top,
+        so we should count for it 
+    */
+    html{
+        scroll-padding: 3rem;
+    }
+}
 body{
     background-color: rgb(60, 81, 102);
     color: white;
@@ -20,11 +29,11 @@ body{
 
 #navbar{
     background-color: rgb(102, 36, 164);
+    position: fixed;
+    top: 0;
 }
 @media (min-width: 815px) {
     #navbar{
-        position: fixed;
-        top: 0;
         width: 3rem;
         height: 100vh;
         transition: width 200ms ease;
@@ -35,10 +44,11 @@ body{
 }
 @media (max-width: 815px) {
     #navbar{
-        position: absolute;
-        top: 0;
         width: 100%;
-        height: 300px;
+        height: 3rem;
+    }
+    #navbar:hover{
+        height: 15rem;
     }
 }
 #navbar header{
@@ -69,19 +79,19 @@ body{
 #navbar div{
     overflow-y: auto;
     overflow-x: hidden;
+    display: none;
+}
+#navbar:hover div{
+    display: block;
 }
 @media (min-width: 815px) {
     #navbar div{
         height: calc(100% - 3rem);
-        display: none;
-    }
-    #navbar:hover div{
-        display: block;
     }
 }
 @media (max-width: 815px) {
     #navbar div{
-        height: 80%;
+        height: 12rem;
     }
 }
 #navbar div p{
@@ -109,7 +119,7 @@ body{
 }
 @media (max-width: 815px) {
     #main-doc{
-        margin-top: 300px;
+        margin-top: 3rem;
         margin-left: 0%;
         width: 100%;
     }
