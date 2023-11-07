@@ -8,6 +8,7 @@ html{
     scroll-behavior: smooth;
 }
 body{
+    background-color: rgb(60, 81, 102);
     color: white;
     max-width: 1920px;
     margin: auto;
