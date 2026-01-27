@@ -28,10 +28,16 @@
             height: 120px;
             background-color: #1e40af;
             /* The polygon points define the arrow head and the notched tail */
-            clip-path: polygon(0% 0%, 100% 50%, 0% 100%, 44% 50%);
-            transform: rotate(var(--direction, 0deg));
+            clip-path: polygon(0% 0%, 100% 50%, 0% 100%, 35% 50%);
+            /*
+                Each pair represents a vertex of the shape.
+                Point 1 (0% 0%): This is the top-left corner of the element.
+                Point 2 (100% 50%): This is the middle-right point. Because it is at 100% width and 50% height, it forms the sharp tip of the arrow.
+                Point 3 (0% 100%): This is the bottom-left corner of the element.
+                Point 4 (35% 50%): This is the indentation. It is placed 35% of the way from the left and centered vertically 50%. 
+             */
+             transform: rotate(var(--direction, 0deg));
         }
-
     </style>
 </head>
 <body>
