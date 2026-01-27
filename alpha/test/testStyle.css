@@ -1,0 +1,51 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	box-sizing: border-box;
+	text-align: justify;
+}
+
+body {
+	background-color: black;
+	color: white;
+}
+
+.center{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+li {
+	width: 9rem;
+	height: 3rem;
+	background-color: brown;
+	border: solid 1px;
+}
+
+ul{
+  list-style: none;
+}
+
+a {
+	background-color: blueviolet;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+}
+
+.dropdown {
+	display: none;
+	position: absolute;
+	left: 9rem;
+}
+
+.direct-child:hover,a:hover{
+    background-color: aqua;
+}
+
+.direct-child:hover .dropdown {
+	display: inline-block;
+}
