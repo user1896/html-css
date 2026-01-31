@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+    /**
+     * Calculates the direction angle (bearing) between two points.
+     * measured clockwise from north
+     */
+    function calculateBearing(coords) {
+        const toRad = (deg) => (deg * Math.PI) / 180;
+        const toDeg = (rad) => (rad * 180) / Math.PI;
+
+        const lat1 = toRad(parseFloat(coords[0].lat));
+        const lon1 = toRad(parseFloat(coords[0].lng));
+        const lat2 = toRad(parseFloat(coords[1].lat));
+        const lon2 = toRad(parseFloat(coords[1].lng));
+
+        const dLon = lon2 - lon1;
+
+        const y = Math.sin(dLon) * Math.cos(lat2);
+        const x = Math.cos(lat1) * Math.sin(lat2) -
+                Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+
+        let bearing = toDeg(Math.atan2(y, x));
+        
+        // Normalize to 0-360 range
+        return (bearing + 360) % 360;
+    }
+
+    // Test cases
+
+    // Eiffel Tower → Arc de Triomphe
+    console.log("Expected: 1.2. Result: ",calculateBearing([
+        {"lat": "48.8584", "lng": "2.2945"},
+        {"lat": "48.8738", "lng": "2.2950"}
+    ]));
+
+    // Eiffel Tower → Notre-Dame Cathedral
+    console.log("Expected: 96. Result: ",calculateBearing(
+        [
+            {"lat": "48.8584", "lng": "2.2945"},
+            {"lat": "48.8530", "lng": "2.3499"}
+        ]
+    ));
+
+    // Big Ben (Elizabeth Tower) → London Eye
+    console.log("Expected: 31. Result: ",calculateBearing(
+        [
+            {"lat":"51.5007","lng":"-0.1246"},
+            {"lat":"51.5033","lng":"-0.1194"}
+        ]
+    ));
+
+    // Times Square → Statue of Liberty
+    console.log("Expected: 212. Result: ",calculateBearing(
+        [
+            {"lat":"40.7580","lng":"-73.9855"},
+            {"lat":"40.6892","lng":"-74.0445"}
+        ]
+    ));
+
+    // Eiffel Tower → Statue of Liberty
+    console.log("Expected: ?. Result: ",calculateBearing(
+        [
+            {"lat": "48.8584", "lng": "2.2945"},
+            {"lat":"40.6892","lng":"-74.0445"}
+        ]
+    ));
+
+</script>
+</html>
