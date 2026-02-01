@@ -10,7 +10,7 @@
             width: 250px;
             height: 250px;
             display: inline-block;
-            --direction: 90deg;
+            --direction: 0deg;
         }
 
         .circle {
@@ -108,6 +108,10 @@
         {"lat":"40.6892","lng":"-74.0445"}
     ]);
     console.log("Result: ",direction_5.toFixed(1));
+
+    const marker = document.querySelector('.direction-marker');
+    // you can change the direction here to see the arrow rotate
+    marker.style.setProperty('--direction', `${direction_1}deg`);
 
 </script>
 </html>
