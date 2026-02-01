@@ -75,42 +75,39 @@
     // Test cases
 
     // Eiffel Tower → Arc de Triomphe
-    console.log("Expected: 1.2. Result: ",calculateBearing([
+    const direction_1 = calculateBearing([
         {"lat": "48.8584", "lng": "2.2945"},
         {"lat": "48.8738", "lng": "2.2950"}
-    ]));
+    ]);
+    console.log("Expected: 1.2. Result: ", direction_1.toFixed(1));
 
     // Eiffel Tower → Notre-Dame Cathedral
-    console.log("Expected: 96. Result: ",calculateBearing(
-        [
-            {"lat": "48.8584", "lng": "2.2945"},
-            {"lat": "48.8530", "lng": "2.3499"}
-        ]
-    ));
+    const direction_2 = calculateBearing([
+        {"lat": "48.8584", "lng": "2.2945"},
+        {"lat": "48.8530", "lng": "2.3499"}
+    ]);
+    console.log("Expected: 96. Result: ", direction_2.toFixed(1));
 
     // Big Ben (Elizabeth Tower) → London Eye
-    console.log("Expected: 31. Result: ",calculateBearing(
-        [
-            {"lat":"51.5007","lng":"-0.1246"},
-            {"lat":"51.5033","lng":"-0.1194"}
-        ]
-    ));
+    const direction_3 = calculateBearing([
+        {"lat":"51.5007","lng":"-0.1246"},
+        {"lat":"51.5033","lng":"-0.1194"}
+    ]);
+    console.log("Result: ",direction_3.toFixed(1));
 
     // Times Square → Statue of Liberty
-    console.log("Expected: 212. Result: ",calculateBearing(
-        [
-            {"lat":"40.7580","lng":"-73.9855"},
-            {"lat":"40.6892","lng":"-74.0445"}
-        ]
-    ));
+    const direction_4 = calculateBearing([
+        {"lat":"40.7580","lng":"-73.9855"},
+        {"lat":"40.6892","lng":"-74.0445"}
+    ]);
+    console.log("Expected: 212. Result: ",direction_4.toFixed(1));
 
     // Eiffel Tower → Statue of Liberty
-    console.log("Expected: ?. Result: ",calculateBearing(
-        [
-            {"lat": "48.8584", "lng": "2.2945"},
-            {"lat":"40.6892","lng":"-74.0445"}
-        ]
-    ));
+    const direction_5 = calculateBearing([
+        {"lat": "48.8584", "lng": "2.2945"},
+        {"lat":"40.6892","lng":"-74.0445"}
+    ]);
+    console.log("Result: ",direction_5.toFixed(1));
 
 </script>
 </html>
