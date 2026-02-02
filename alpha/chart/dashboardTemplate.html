@@ -165,27 +165,34 @@
     let myBarChart // store the bar chart instance
     renderBarChart(dataLabels, dataValues, dataColors);
 
-    // Generate status cards dynamically
-    const container = document.querySelector('.status-cards-container');
-    
-    for(let i = 0; i < status.length; i++) {
-        const currentStatus = status[i];
-        const label = dataLabels[i];
-        const count = dataValues[i];
-        const icon = dataIcons[i];
+    renderStatusCards(status, dataLabels, dataValues, dataIcons);
 
-        const card = document.createElement('div');
-        card.className = `status-card card-${currentStatus}`;
-        card.innerHTML = `
-            <div class="card-icon">
-                <i class="${icon}"></i>
-            </div>
-            <div class="card-content">
-                <h3>${count}</h3>
-                <p>${label.charAt(0).toUpperCase() + label.slice(1)}</p> <!-- Capitalize first letter + the rest of the word -->
-            </div>
-        `;
-        container.appendChild(card);
+    // Generate status cards dynamically
+    function renderStatusCards(status, dataLabels, dataValues, dataIcons) {
+        const container = document.querySelector('.status-cards-container');
+
+        // Clear existing cards to prevent duplicates
+        container.innerHTML = '';
+        
+        for(let i = 0; i < status.length; i++) {
+            const currentStatus = status[i];
+            const label = dataLabels[i];
+            const count = dataValues[i];
+            const icon = dataIcons[i];
+    
+            const card = document.createElement('div');
+            card.className = `status-card card-${currentStatus}`;
+            card.innerHTML = `
+                <div class="card-icon">
+                    <i class="${icon}"></i>
+                </div>
+                <div class="card-content">
+                    <h3>${count}</h3>
+                    <p>${label.charAt(0).toUpperCase() + label.slice(1)}</p> <!-- Capitalize first letter + the rest of the word -->
+                </div>
+            `;
+            container.appendChild(card);
+        }
     }
 
     // Pie Chart
