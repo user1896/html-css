@@ -28,6 +28,10 @@
             gap: 20px;
         }
 
+        h2 {
+            padding-top: 10px;
+        }
+
         .charts-container {
             display: flex;
             justify-content: center;
@@ -37,12 +41,12 @@
 
         .pieChart-container {
             width: 220px;
-            height: 300px;
+            height: 330px;
         }
 
         .barChart-container {
             width: 500px;
-            height: 300px;
+            height: 330px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -50,11 +54,11 @@
 
         /* statusCard style */
         .status-cards-container {
-            width: 600px;
+            width: 500px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            padding: 20px;
+            padding-bottom: 15px;
         }
 
         .status-card {
@@ -108,6 +112,7 @@
 </head>
 <body>
     <main>
+        <h2>État des véhicules</h2>
         <div class="status-cards-container"></div>
         <div class="charts-container">
             <div class="pieChart-container">
@@ -193,8 +198,8 @@
             },
             plugins: {
                 title: {
-                    display: false,
-                    text: '',
+                    display: true,
+                    text: 'Pourcentage de la flotte par statut',
                     padding: {
                         bottom: 10
                     }
@@ -252,7 +257,7 @@
             plugins: {
                 title: {
                     display: true,
-                    text: 'Répartition de l\'état des véhicules'
+                    text: 'Répartition des statuts'
                 },
                 legend: {
                     display: false // Hide legend since we have only one dataset
