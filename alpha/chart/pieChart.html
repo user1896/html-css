@@ -15,14 +15,14 @@
             margin: 0;
         }
         .barChart-container {
-            width: 600px;
-            height: 300px;
+            width: 400px;
+            height: 400px;
         }
     </style>
 </head>
 <body>
-    <div class="barChart-container">
-        <canvas id="barChart"></canvas>
+    <div class="pieChart-container">
+        <canvas id="pieChart"></canvas>
     </div>
 </body>
 <script>
@@ -37,16 +37,13 @@
     const labels = Object.keys(statusData); // ["online", "engine", "ack", "offline"]
     const dataValues = Object.values(statusData); // [85, 5, 190, 1620]
 
-    const ctx = document.getElementById('barChart').getContext('2d');
+    const ctx = document.getElementById('pieChart').getContext('2d');
     new Chart(ctx, {
-        type: 'bar', // Specify bar chart type
+        type: 'doughnut', // This can also be 'pie'
         data: {
             labels: labels,
             datasets: [{
-                label: 'Status Count', // This dataset label is what Chart.js uses when it generates
-                // the legend entries and also what appears in tooltips. However, since we have only
-                // one dataset, it may not be necessary to display it, so below in
-                // "options > plugings" we're hiding the legend.
+                label: 'Status Count',
                 data: dataValues,
                 backgroundColor: [
                     '#20bf6b',  // online
@@ -64,16 +61,8 @@
                     text: 'Répartition de l\'état des véhicules'
                 },
                 legend: {
-                    display: false // Hide legend since we have only one dataset
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true, // Ensure the y-axis starts at zero
-                    title: {
-                        display: true,
-                        text: 'Nombre de véhicules'
-                    }
+                    display: true, // Enable legend for pie charts
+                    position: 'bottom' // Optional: position the legend
                 }
             }
         }
