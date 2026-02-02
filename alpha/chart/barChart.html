@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Load Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .barChart-container {
+            width: 600px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="barChart-container">
+        <canvas id="statusChart"></canvas>
+    </div>
+
+</body>
+<script>
+    const statusData = {
+        "online": 85,
+        "engine": 5,
+        "ack": 190,
+        "offline": 1620
+    };
+
+    // Extract labels and values dynamically
+    const labels = Object.keys(statusData); // ["online", "engine", "ack", "offline"]
+    const dataValues = Object.values(statusData); // [85, 5, 190, 1620]
+
+    const ctx = document.getElementById('statusChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar', // Specify bar chart type
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Status Count',
+                data: dataValues,
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.6)',  // online
+                    'rgba(255, 206, 86, 0.6)',  // engine
+                    'rgba(54, 162, 235, 0.6)',  // ack
+                    'rgba(255, 99, 132, 0.6)'   // offline
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true // Ensure the y-axis starts at zero
+                }
+            }
+        }
+    });
+
+</script>
+</html>
