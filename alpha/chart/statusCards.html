@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Load Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <!-- Load Chart.js Data Labels plugin from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <style>
+        * {
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .status-cards-container {
+            background-color: antiquewhite;
+            width: 600px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .status-card {
+            border-radius: 8px;
+            padding: 25px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .status-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon i {
+            font-size: 40px;
+        }
+
+        .card-content h3 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .card-content p {
+            margin: 5px 0 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Status-specific colors matching your chart */
+        .card-online {
+            background: linear-gradient(135deg, #20bf6b, #26d07c);
+        }
+
+        .card-engine {
+            background: linear-gradient(135deg, #fa8231, #fc9952);
+        }
+
+        .card-ack {
+            background: linear-gradient(135deg, #003cff, #3366ff);
+        }
+
+        .card-offline {
+            background: linear-gradient(135deg, #ff0000, #ff3333);
+        }
+    </style>
+</head>
+<body>
+    <div class="status-cards-container">
+        <!-- Cards will be dynamically inserted here -->
+    </div>
+</body>
+<script>
+    const statusData = {
+        "online": 85,
+        "engine": 5,
+        "ack": 190,
+        "offline": 1620
+    };
+
+    const icons = {
+        "online": "fa-check-circle",
+        "engine": "fa-cog",
+        "ack": "fa-bell",
+        "offline": "fa-times-circle"
+    };
+
+    const container = document.querySelector('.status-cards-container');
+
+    Object.entries(statusData).forEach(([status, count]) => {
+        const card = document.createElement('div');
+        card.className = `status-card card-${status}`;
+        card.innerHTML = `
+            <div class="card-icon">
+                <i class="fa ${icons[status]}"></i>
+            </div>
+            <div class="card-content">
+                <h3>${count}</h3>
+                <p>${status.charAt(0).toUpperCase() + status.slice(1)}</p>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+</script>
+</html>
