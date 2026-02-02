@@ -152,12 +152,15 @@
         }
     };
 
-    // Extract status, values, colors, and icons dynamically
+    // Extract status, values, colors, and icons dynamically, so later we just change the statusData to update all charts and cards for a new dashboard
     const status = Object.keys(statusData); // ["online", "engine", "ack", "offline"]
     const dataLabels = Object.values(statusData).map(item => item.label); // ['En mouvement', 'Non confirmé', 'À l\'arrêt - Confirmé', 'Hors ligne']
     const dataValues = Object.values(statusData).map(item => item.value); // [85, 5, 190, 1620]
     const dataColors = Object.values(statusData).map(item => item.color); // ['#20bf6b', '#fa8231', '#003cff', '#ff0000']
     const dataIcons = Object.values(statusData).map(item => item.icon); // ['fa-check-circle', 'fa-cog', 'fa-bell', 'fa-times-circle']
+
+    let myPieChart // store the pie chart instance
+    renderPieChart(dataLabels, dataValues, dataColors);
 
     // Generate status cards dynamically
     const container = document.querySelector('.status-cards-container');
@@ -182,66 +185,78 @@
         container.appendChild(card);
     }
 
-    // Pie Chart
-    const ctxPie = document.getElementById('pieChart').getContext('2d');
-    new Chart(ctxPie, {
-        type: 'doughnut', // This can also be 'pie'
-        data: {
-            labels: dataLabels,
-            datasets: [{
-                label: 'Status Count',
-                data: dataValues,
-                backgroundColor: dataColors,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            maintainAspectRatio: false, // Allow chart to resize based on container (so it can use thefull containers height when we add paddings to the title and legend)
-            layout: {
-                padding: {
-                    // Optional: add padding around the chart
+    // Render a Pie Chart
+    function renderPieChart(dataLabels, dataValues, dataColors) {
+        const ctxPie = document.getElementById('pieChart').getContext('2d');
+
+        // If chart already exists, update data and redraw
+        if(myPieChart) {
+            myPieChart.data.labels = dataLabels;
+            myPieChart.data.datasets[0].data = dataValues;
+            myPieChart.data.datasets[0].backgroundColor = dataColors;
+            myPieChart.update(); // Triggers re-render
+            return;
+        }
+        
+        myPieChart = new Chart(ctxPie, {
+            type: 'doughnut', // This can also be 'pie'
+            data: {
+                labels: dataLabels,
+                datasets: [{
+                    label: 'Status Count',
+                    data: dataValues,
+                    backgroundColor: dataColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false, // Allow chart to resize based on container (so it can use thefull containers height when we add paddings to the title and legend)
+                layout: {
+                    padding: {
+                        // Optional: add padding around the chart
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Pourcentage de la flotte par statut',
+                        padding: {
+                            bottom: 10
+                        }
+                    },
+                    legend: {
+                        display: true, // Enable legend for pie charts
+                        position: 'bottom', // Optional: position the legend
+                        padding: {
+                            // only controls spacing between individual legend items, not the gap between the legend box and the chart itself.à
+                        }
+                    },
+                    datalabels: { // Configuration for Data Labels plugin
+                        anchor: 'end', // Position at the edge of the slice
+                        align: 'end', // Push labels away from the anchor point
+                        offset: -4, // Add spacing between slice and label
+                        color: '#000',
+                        formatter: (value, context) => {
+                            // Calculate total of all data points
+                            const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                            // Calculate percentage
+                            const percentage = (value / total * 100);
+    
+                            if(percentage < 1) {
+                                return ''; // Don't display labels who are les than 1%
+                            }
+    
+                            // return the percentage as a string with a '%' sign
+                            return percentage.toFixed(1) + '%';
+                        }
+                    }
                 }
             },
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Pourcentage de la flotte par statut',
-                    padding: {
-                        bottom: 10
-                    }
-                },
-                legend: {
-                    display: true, // Enable legend for pie charts
-                    position: 'bottom', // Optional: position the legend
-                    padding: {
-                        // only controls spacing between individual legend items, not the gap between the legend box and the chart itself.à
-                    }
-                },
-                datalabels: { // Configuration for Data Labels plugin
-                    anchor: 'end', // Position at the edge of the slice
-                    align: 'end', // Push labels away from the anchor point
-                    offset: -4, // Add spacing between slice and label
-                    color: '#000',
-                    formatter: (value, context) => {
-                        // Calculate total of all data points
-                        const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-                        // Calculate percentage
-                        const percentage = (value / total * 100);
-
-                        if(percentage < 1) {
-                            return ''; // Don't display labels who are les than 1%
-                        }
-
-                        // return the percentage as a string with a '%' sign
-                        return percentage.toFixed(1) + '%';
-                    }
-                }
-            }
-        },
-        // When we include the Data Labels plugin CDN script, it creates a global variable
-        // called "ChartDataLabels" that we need to register with the chart.
-        plugins: [ChartDataLabels] // Register the Data Labels plugin
-    });
+            // When we include the Data Labels plugin CDN script, it creates a global variable
+            // called "ChartDataLabels" that we need to register with the chart.
+            plugins: [ChartDataLabels] // Register the Data Labels plugin
+        });
+    }
 
     // Bar Chart
     const ctxBar = document.getElementById('barChart').getContext('2d');
