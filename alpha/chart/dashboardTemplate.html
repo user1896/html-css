@@ -119,15 +119,28 @@
 </body>
 <script>
     const statusData = {
-        "online": 85,
-        "engine": 5,
-        "ack": 190,
-        "offline": 1620
+        "online": {
+            value: 85,
+            color: '#20bf6b'
+        },
+        "engine": {
+            value: 5,
+            color: '#fa8231'
+        },
+        "ack": {
+            value: 190,
+            color: '#003cff'
+        },
+        "offline": {
+            value: 1620,
+            color: '#ff0000'
+        }
     };
 
     // Extract labels and values dynamically
     const labels = Object.keys(statusData); // ["online", "engine", "ack", "offline"]
-    const dataValues = Object.values(statusData); // [85, 5, 190, 1620]
+    const dataValues = Object.values(statusData).map(item => item.value); // [85, 5, 190, 1620]
+    const dataColors = Object.values(statusData).map(item => item.color); // ['#20bf6b', '#fa8231', '#003cff', '#ff0000']
 
     const icons = {
         "online": "fa-check-circle",
@@ -146,7 +159,7 @@
                 <i class="fa ${icons[status]}"></i>
             </div>
             <div class="card-content">
-                <h3>${count}</h3>
+                <h3>${count.value}</h3>
                 <p>${status.charAt(0).toUpperCase() + status.slice(1)}</p>
             </div>
         `;
@@ -162,12 +175,7 @@
             datasets: [{
                 label: 'Status Count',
                 data: dataValues,
-                backgroundColor: [
-                    '#20bf6b',  // online
-                    '#fa8231',  // engine
-                    '#003cff',  // ack
-                    '#ff0000'   // offline
-                ],
+                backgroundColor: dataColors,
                 borderWidth: 1
             }]
         },
@@ -231,12 +239,7 @@
                 // one dataset, it may not be necessary to display it, so below in
                 // "options > plugings" we're hiding the legend.
                 data: dataValues,
-                backgroundColor: [
-                    '#20bf6b',  // online
-                    '#fa8231',  // engine
-                    '#003cff',  // ack
-                    '#ff0000'   // offline
-                ],
+                backgroundColor: dataColors,
                 borderWidth: 1
             }]
         },
