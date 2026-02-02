@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Load Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <!-- Load Chart.js Data Labels plugin from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <style>
         * {
             box-sizing: border-box; /* Include padding and border in element's total width and height */
@@ -29,13 +33,13 @@
         }
 
         .pieChart-container {
-            width: 300px;
+            width: 220px;
             height: 300px;
             background-color: lightgray;
         }
 
         .barChart-container {
-            width: 300px;
+            width: 380px;
             height: 300px;
             background-color: lightgray;
         }
@@ -120,6 +124,10 @@
         "offline": 1620
     };
 
+    // Extract labels and values dynamically
+    const labels = Object.keys(statusData); // ["online", "engine", "ack", "offline"]
+    const dataValues = Object.values(statusData); // [85, 5, 190, 1620]
+
     const icons = {
         "online": "fa-check-circle",
         "engine": "fa-cog",
@@ -142,6 +150,66 @@
             </div>
         `;
         container.appendChild(card);
+    });
+
+    // Pie Chart
+    const ctx = document.getElementById('pieChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut', // This can also be 'pie'
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Status Count',
+                data: dataValues,
+                backgroundColor: [
+                    '#20bf6b',  // online
+                    '#fa8231',  // engine
+                    '#003cff',  // ack
+                    '#ff0000'   // offline
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false, // Allow chart to resize based on container (so it can use thefull containers height when we add paddings to the title and legend)
+            layout: {
+                padding: {
+                    // Optional: add padding around the chart
+                }
+            },
+            plugins: {
+                title: {
+                    display: false,
+                    text: '',
+                    padding: {
+                        bottom: 10
+                    }
+                },
+                legend: {
+                    display: true, // Enable legend for pie charts
+                    position: 'bottom', // Optional: position the legend
+                    padding: {
+                        // only controls spacing between individual legend items, not the gap between the legend box and the chart itself.à
+                    }
+                },
+                datalabels: { // Configuration for Data Labels plugin
+                    anchor: 'end', // Position at the edge of the slice
+                    align: 'end', // Push labels away from the anchor point
+                    offset: -4, // Add spacing between slice and label
+                    color: '#000',
+                    formatter: (value, context) => {
+                        // Calculate total of all data points
+                        const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        // Calculate percentage
+                        const percentage = (value / total * 100).toFixed(1) + '%';
+                        return percentage;
+                    }
+                }
+            }
+        },
+        // When we include the Data Labels plugin CDN script, it creates a global variable
+        // called "ChartDataLabels" that we need to register with the chart.
+        plugins: [ChartDataLabels] // Register the Data Labels plugin
     });
 </script>
 </html>
