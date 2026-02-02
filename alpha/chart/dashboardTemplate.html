@@ -40,13 +40,13 @@
         }
 
         .pieChart-container {
-            width: 220px;
-            height: 330px;
+            width: 280px;
+            height: 370px;
         }
 
         .barChart-container {
             width: 500px;
-            height: 330px;
+            height: 370px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -127,29 +127,34 @@
 <script>
     const statusData = {
         "online": {
+            label: 'En mouvement',
             value: 85,
             color: '#20bf6b',
             icon: 'fas fa-car-side'
         },
         "engine": {
+            label: 'Non confirmé',
             value: 5,
             color: '#fa8231',
             icon: 'fa-solid fa-gear'
         },
         "ack": {
+            label: 'À l\'arrêt - Confirmé',
             value: 190,
             color: '#003cff',
             icon: 'fa-solid fa-satellite-dish'
         },
         "offline": {
+            label: 'Hors ligne',
             value: 1620,
             color: '#ff0000',
             icon: 'fa-solid fa-ban'
         }
     };
 
-    // Extract labels and values dynamically
-    const labels = Object.keys(statusData); // ["online", "engine", "ack", "offline"]
+    // Extract status, values, colors, and icons dynamically
+    const status = Object.keys(statusData); // ["online", "engine", "ack", "offline"]
+    const dataLabels = Object.values(statusData).map(item => item.label); // ['En mouvement', 'Non confirmé', 'À l\'arrêt - Confirmé', 'Hors ligne']
     const dataValues = Object.values(statusData).map(item => item.value); // [85, 5, 190, 1620]
     const dataColors = Object.values(statusData).map(item => item.color); // ['#20bf6b', '#fa8231', '#003cff', '#ff0000']
     const dataIcons = Object.values(statusData).map(item => item.icon); // ['fa-check-circle', 'fa-cog', 'fa-bell', 'fa-times-circle']
@@ -157,20 +162,21 @@
     // Generate status cards dynamically
     const container = document.querySelector('.status-cards-container');
     
-    for(let i = 0; i < labels.length; i++) {
-        const status = labels[i];
+    for(let i = 0; i < status.length; i++) {
+        const currentStatus = status[i];
+        const label = dataLabels[i];
         const count = dataValues[i];
         const icon = dataIcons[i];
 
         const card = document.createElement('div');
-        card.className = `status-card card-${status}`;
+        card.className = `status-card card-${currentStatus}`;
         card.innerHTML = `
             <div class="card-icon">
                 <i class="${icon}"></i>
             </div>
             <div class="card-content">
                 <h3>${count}</h3>
-                <p>${status.charAt(0).toUpperCase() + status.slice(1)}</p> <!-- Capitalize first letter + the rest of the word -->
+                <p>${label.charAt(0).toUpperCase() + label.slice(1)}</p> <!-- Capitalize first letter + the rest of the word -->
             </div>
         `;
         container.appendChild(card);
@@ -181,7 +187,7 @@
     new Chart(ctxPie, {
         type: 'doughnut', // This can also be 'pie'
         data: {
-            labels: labels,
+            labels: dataLabels,
             datasets: [{
                 label: 'Status Count',
                 data: dataValues,
@@ -242,7 +248,7 @@
     new Chart(ctxBar, {
         type: 'bar', // Specify bar chart type
         data: {
-            labels: labels,
+            labels: dataLabels,
             datasets: [{
                 label: 'Status Count', // This dataset label is what Chart.js uses when it generates
                 // the legend entries and also what appears in tooltips. However, since we have only
