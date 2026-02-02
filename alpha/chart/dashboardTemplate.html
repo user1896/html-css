@@ -10,6 +10,8 @@
             padding: 0;
             margin: 0;
         }
+
+        /* Main dashboard layout, statusCard + the two charts */
         main {
             display: flex;
             flex-direction: column;
@@ -18,26 +20,82 @@
             min-height: 100vh;
             gap: 20px;
         }
+
         .charts-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
         }
-        .status-cards-container {
-            width: 500px;
-            height: 250px;
-            background-color: lightgray;
-        }
+
         .pieChart-container {
             width: 300px;
             height: 300px;
             background-color: lightgray;
         }
+
         .barChart-container {
             width: 300px;
             height: 300px;
             background-color: lightgray;
+        }
+
+        /* statusCard style */
+        .status-cards-container {
+            background-color: antiquewhite;
+            width: 600px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .status-card {
+            border-radius: 8px;
+            padding: 25px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .status-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon i {
+            font-size: 40px;
+        }
+
+        .card-content h3 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .card-content p {
+            margin: 5px 0 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* coloring the cards */
+        .card-online {
+            background: linear-gradient(135deg, #20bf6b, #26d07c);
+        }
+
+        .card-engine {
+            background: linear-gradient(135deg, #fa8231, #fc9952);
+        }
+
+        .card-ack {
+            background: linear-gradient(135deg, #003cff, #3366ff);
+        }
+
+        .card-offline {
+            background: linear-gradient(135deg, #ff0000, #ff3333);
         }
     </style>
 </head>
@@ -54,5 +112,36 @@
         </div>
     </main>
 </body>
-<script></script>
+<script>
+    const statusData = {
+        "online": 85,
+        "engine": 5,
+        "ack": 190,
+        "offline": 1620
+    };
+
+    const icons = {
+        "online": "fa-check-circle",
+        "engine": "fa-cog",
+        "ack": "fa-bell",
+        "offline": "fa-times-circle"
+    };
+
+    const container = document.querySelector('.status-cards-container');
+
+    Object.entries(statusData).forEach(([status, count]) => {
+        const card = document.createElement('div');
+        card.className = `status-card card-${status}`;
+        card.innerHTML = `
+            <div class="card-icon">
+                <i class="fa ${icons[status]}"></i>
+            </div>
+            <div class="card-content">
+                <h3>${count}</h3>
+                <p>${status.charAt(0).toUpperCase() + status.slice(1)}</p>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+</script>
 </html>
