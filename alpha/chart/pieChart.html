@@ -67,7 +67,10 @@
                     position: 'bottom' // Optional: position the legend
                 },
                 datalabels: { // Configuration for Data Labels plugin
-                    color: '#fff',
+                    anchor: 'end', // Position at the edge of the slice
+                    align: 'end', // Push labels away from the anchor point
+                    offset: 10, // Add spacing between slice and label
+                    color: '#000',
                     formatter: (value, context) => {
                         // Calculate total of all data points
                         const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
