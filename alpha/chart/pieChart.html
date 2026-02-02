@@ -6,6 +6,8 @@
     <title>Document</title>
     <!-- Load Chart.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <!-- Load Chart.js Data Labels plugin from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <style>
         body {
             display: flex;
@@ -63,9 +65,22 @@
                 legend: {
                     display: true, // Enable legend for pie charts
                     position: 'bottom' // Optional: position the legend
+                },
+                datalabels: { // Configuration for Data Labels plugin
+                    color: '#fff',
+                    formatter: (value, context) => {
+                        // Calculate total of all data points
+                        const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        // Calculate percentage
+                        const percentage = (value / total * 100).toFixed(1) + '%';
+                        return percentage;
+                    }
                 }
             }
-        }
+        },
+        // When we include the Data Labels plugin CDN script, it creates a global variable
+        // called "ChartDataLabels" that we need to register with the chart.
+        plugins: [ChartDataLabels] // Register the Data Labels plugin
     });
 console.log(Chart.version)
 </script>
