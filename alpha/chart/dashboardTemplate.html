@@ -17,6 +17,7 @@
 
         /* Main dashboard layout, statusCard + the two charts */
         main {
+            background-color: rgb(230, 230, 230);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -35,18 +36,18 @@
         .pieChart-container {
             width: 220px;
             height: 300px;
-            background-color: lightgray;
         }
 
         .barChart-container {
-            width: 380px;
+            width: 500px;
             height: 300px;
-            background-color: lightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* statusCard style */
         .status-cards-container {
-            background-color: antiquewhite;
             width: 600px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -85,7 +86,7 @@
             opacity: 0.9;
         }
 
-        /* coloring the cards */
+        /* coloring the statusCards */
         .card-online {
             background: linear-gradient(135deg, #20bf6b, #26d07c);
         }
@@ -153,8 +154,8 @@
     });
 
     // Pie Chart
-    const ctx = document.getElementById('pieChart').getContext('2d');
-    new Chart(ctx, {
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    new Chart(ctxPie, {
         type: 'doughnut', // This can also be 'pie'
         data: {
             labels: labels,
@@ -210,6 +211,49 @@
         // When we include the Data Labels plugin CDN script, it creates a global variable
         // called "ChartDataLabels" that we need to register with the chart.
         plugins: [ChartDataLabels] // Register the Data Labels plugin
+    });
+
+    // Bar Chart
+    const ctxBar = document.getElementById('barChart').getContext('2d');
+    new Chart(ctxBar, {
+        type: 'bar', // Specify bar chart type
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Status Count', // This dataset label is what Chart.js uses when it generates
+                // the legend entries and also what appears in tooltips. However, since we have only
+                // one dataset, it may not be necessary to display it, so below in
+                // "options > plugings" we're hiding the legend.
+                data: dataValues,
+                backgroundColor: [
+                    '#20bf6b',  // online
+                    '#fa8231',  // engine
+                    '#003cff',  // ack
+                    '#ff0000'   // offline
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Répartition de l\'état des véhicules'
+                },
+                legend: {
+                    display: false // Hide legend since we have only one dataset
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true, // Ensure the y-axis starts at zero
+                    title: {
+                        display: true,
+                        text: 'Nombre de véhicules'
+                    }
+                }
+            }
+        }
     });
 </script>
 </html>
