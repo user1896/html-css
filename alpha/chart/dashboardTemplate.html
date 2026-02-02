@@ -8,6 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <!-- Load Chart.js Data Labels plugin from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <!-- Load Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
             box-sizing: border-box; /* Include padding and border in element's total width and height */
@@ -121,19 +123,23 @@
     const statusData = {
         "online": {
             value: 85,
-            color: '#20bf6b'
+            color: '#20bf6b',
+            icon: 'fas fa-car-side'
         },
         "engine": {
             value: 5,
-            color: '#fa8231'
+            color: '#fa8231',
+            icon: 'fa-solid fa-gear'
         },
         "ack": {
             value: 190,
-            color: '#003cff'
+            color: '#003cff',
+            icon: 'fa-solid fa-satellite-dish'
         },
         "offline": {
             value: 1620,
-            color: '#ff0000'
+            color: '#ff0000',
+            icon: 'fa-solid fa-ban'
         }
     };
 
@@ -141,25 +147,21 @@
     const labels = Object.keys(statusData); // ["online", "engine", "ack", "offline"]
     const dataValues = Object.values(statusData).map(item => item.value); // [85, 5, 190, 1620]
     const dataColors = Object.values(statusData).map(item => item.color); // ['#20bf6b', '#fa8231', '#003cff', '#ff0000']
+    const dataIcons = Object.values(statusData).map(item => item.icon); // ['fa-check-circle', 'fa-cog', 'fa-bell', 'fa-times-circle']
 
-    const icons = {
-        "online": "fa-check-circle",
-        "engine": "fa-cog",
-        "ack": "fa-bell",
-        "offline": "fa-times-circle"
-    };
-
+    // Generate status cards dynamically
     const container = document.querySelector('.status-cards-container');
-
+    
     for(let i = 0; i < labels.length; i++) {
         const status = labels[i];
         const count = dataValues[i];
+        const icon = dataIcons[i];
 
         const card = document.createElement('div');
         card.className = `status-card card-${status}`;
         card.innerHTML = `
             <div class="card-icon">
-                <i class="fa ${icons[status]}"></i>
+                <i class="${icon}"></i>
             </div>
             <div class="card-content">
                 <h3>${count}</h3>
