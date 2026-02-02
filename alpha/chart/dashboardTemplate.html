@@ -202,8 +202,14 @@
                         // Calculate total of all data points
                         const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
                         // Calculate percentage
-                        const percentage = (value / total * 100).toFixed(1) + '%';
-                        return percentage;
+                        const percentage = (value / total * 100);
+
+                        if(percentage < 1) {
+                            return ''; // Don't display labels who are les than 1%
+                        }
+
+                        // return the percentage as a string with a '%' sign
+                        return percentage.toFixed(1) + '%';
                     }
                 }
             }
