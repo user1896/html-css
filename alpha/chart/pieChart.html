@@ -9,16 +9,25 @@
     <!-- Load Chart.js Data Labels plugin from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <style>
+        * {
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            padding: 0;
+            margin: 0;
+        }
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
-        .barChart-container {
-            width: 400px;
-            height: 400px;
+        .pieChart-container {
+            background-color: bisque;
+            /* if you want the legends at the bottom to have more padding between them and the chart, you
+            need to increase the height compare to the width, because the circular chart sizes itself
+            based on the width, naturally leaving vertical space that separates it from the bottom legend.
+            also the chart must have maintainAspectRatio: false */
+            width: 330px;
+            height: 450px;
         }
     </style>
 </head>
@@ -57,14 +66,26 @@
             }]
         },
         options: {
+            maintainAspectRatio: false, // Allow chart to resize based on container (so it can use thefull containers height when we add paddings to the title and legend)
+            layout: {
+                padding: {
+                    // Optional: add padding around the chart
+                }
+            },
             plugins: {
                 title: {
                     display: true,
-                    text: 'Répartition de l\'état des véhicules'
+                    text: 'Répartition de l\'état des véhicules',
+                    padding: {
+                        bottom: 10
+                    }
                 },
                 legend: {
                     display: true, // Enable legend for pie charts
-                    position: 'bottom' // Optional: position the legend
+                    position: 'bottom', // Optional: position the legend
+                    padding: {
+                        // only controls spacing between individual legend items, not the gap between the legend box and the chart itself.à
+                    }
                 },
                 datalabels: { // Configuration for Data Labels plugin
                     anchor: 'end', // Position at the edge of the slice
