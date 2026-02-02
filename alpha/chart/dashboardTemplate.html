@@ -151,7 +151,10 @@
 
     const container = document.querySelector('.status-cards-container');
 
-    Object.entries(statusData).forEach(([status, count]) => {
+    for(let i = 0; i < labels.length; i++) {
+        const status = labels[i];
+        const count = dataValues[i];
+
         const card = document.createElement('div');
         card.className = `status-card card-${status}`;
         card.innerHTML = `
@@ -159,12 +162,12 @@
                 <i class="fa ${icons[status]}"></i>
             </div>
             <div class="card-content">
-                <h3>${count.value}</h3>
-                <p>${status.charAt(0).toUpperCase() + status.slice(1)}</p>
+                <h3>${count}</h3>
+                <p>${status.charAt(0).toUpperCase() + status.slice(1)}</p> <!-- Capitalize first letter + the rest of the word -->
             </div>
         `;
         container.appendChild(card);
-    });
+    }
 
     // Pie Chart
     const ctxPie = document.getElementById('pieChart').getContext('2d');
