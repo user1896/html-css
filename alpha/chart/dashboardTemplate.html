@@ -226,6 +226,18 @@
                         // Optional: add padding around the chart
                     }
                 },
+                onClick: (event, activeElements) => {
+                    if (activeElements.length > 0) { // checks if there are any active elements (slices)
+                        const index = activeElements[0].index; // Get the index of the clicked slice
+                        const clickedStatus = statusData[index]; // Get the corresponding status of the clicked slice
+                        
+                        const params = new URLSearchParams({
+                            currentStatus: clickedStatus,
+                            // add other parameters as needed
+                        });
+                        window.location.href = `dashboardTemplate.html?${params.toString()}`; // Navigate to the live monitoring page with query parameters
+                    }
+                },
                 plugins: {
                     title: {
                         display: true,
@@ -296,6 +308,18 @@
                 }]
             },
             options: {
+                onClick: (event, activeElements) => {
+                    if (activeElements.length > 0) { // checks if there are any active elements (slices)
+                        const index = activeElements[0].index; // Get the index of the clicked slice
+                        const clickedStatus = statusData[index]; // Get the corresponding status of the clicked slice
+                        
+                        const params = new URLSearchParams({
+                            currentStatus: clickedStatus,
+                            // add other parameters as needed
+                        });
+                        window.location.href = `dashboardTemplate.html?${params.toString()}`; // Navigate to the live monitoring page with query parameters
+                    }
+                },
                 plugins: {
                     title: {
                         display: true,

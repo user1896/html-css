@@ -72,6 +72,23 @@
                     // Optional: add padding around the chart
                 }
             },
+            onClick: (event, activeElements) => {
+                // The onClick event handler is added to the chart options. When a slice of the pie
+                // chart is clicked, it checks if there are any active elements (slices) and 
+                // retrieves the index of the clicked slice. It then uses this index to get the 
+                // corresponding status from the "status" array and constructs a URL with query 
+                // parameters to navigate to the live monitoring page filtered by that status.
+                if (activeElements.length > 0) { // checks if there are any active elements (slices)
+                    const index = activeElements[0].index; // Get the index of the clicked slice
+                    const clickedStatus = statusData[index]; // Get the corresponding status of the clicked slice
+                    
+                    const params = new URLSearchParams({
+                        currentStatus: clickedStatus,
+                        // add other parameters as needed
+                    });
+                    window.location.href = `dashboardTemplate.html?${params.toString()}`; // Navigate to the live monitoring page with query parameters
+                }
+            },
             plugins: {
                 title: {
                     display: true,
