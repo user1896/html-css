@@ -3,32 +3,40 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="testStyle.css">
+	<!-- <link rel="stylesheet" href="testStyle.css"> -->
 	<title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .parent {
+            background-color: aqua;
+            width: 100%;
+            max-width: 500px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 200px);
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .child {
+            max-width: 200px;
+            background-color: rgb(9, 9, 121);
+            padding: 25px;
+        }
+    </style>
 </head>
 <body>
-	<ul class="parent">
-
-		<li class="direct-child center">
-			1st drop
-			<ul class="dropdown center">
-				<li>
-					<a class="center" href="">1 inside 1</a>
-				</li>
-				<li><a class="center" href="">2 inside 1</a></li>
-				<li><a class="center" href="">3 inside 1</a></li>
-			</ul>
-		</li>
-
-		<li class="direct-child center">
-			2ed drop
-			<ul class="dropdown center">
-				<li><a class="center" href="">1 inside 2</a></li>
-				<li><a class="center" href="">2 inside 2</a></li>
-				<li><a class="center" href="">3 inside 2</a></li>
-			</ul>
-		</li>
-
-	</ul>
+    <div class="container">
+        <div class="parent">
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+        </div>
+    </div>
 </body>
 </html>

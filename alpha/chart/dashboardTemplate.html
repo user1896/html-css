@@ -38,6 +38,16 @@
             align-items: center;
             gap: 20px;
         }
+        @media (min-width: 815px) {
+            .charts-container {
+                flex-direction: row;
+            }
+        }
+        @media (max-width: 815px) {
+            .charts-container {
+                flex-direction: column;
+            }
+        }
 
         .pieChart-container {
             width: 280px;
@@ -54,10 +64,12 @@
 
         /* statusCard style */
         .status-cards-container {
-            width: 500px;
+            width: 100%;
+            max-width: 500px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, 240px);
             gap: 20px;
+            justify-content: center;
             padding-bottom: 15px;
         }
 
