@@ -30,8 +30,7 @@
     </div>
 </body>
 <script>
-    // turn this into and object with keys as "type" and values as the count of each type, similar to "statusData" below
-    const alertsData = [ // similar to "events.data" in the events' index page, but with only "type" and "id" properties for simplicity
+    const alertsData = [ // similar to "events.data" in the events' index page in ostool, but with only "type" and "id" properties for simplicity
         {"id": 315, "type": "distance"},
         {"id": 314, "type": "distance"},
         {"id": 313, "type": "distance"},
@@ -66,21 +65,13 @@
         {"id": 491, "type": "move_duration"}
     ]
 
-    const statusData = {
-        "online": 85,
-        "engine": 5,
-        "ack": 190,
-        "offline": 1620
-    };
+    const alertsDataTypes = getAlertsDataTypes(alertsData); // e.g. { distance: 4, geofence_in: 6, ... }
 
     // Extract labels and values dynamically
-    const labels = Object.keys(statusData); // ["online", "engine", "ack", "offline"]
-    const dataValues = Object.values(statusData); // [85, 5, 190, 1620]
+    const labels = Object.keys(alertsDataTypes); // ["distance", "geofence_in", "ignition", ...]
+    const dataValues = Object.values(alertsDataTypes); // [4, 6, 2, ...]
 
-    const alertsDataTypes = getAlertsDataTypes(alertsData);
-    console.log(alertsDataTypes); // This will log an object with alert types as keys and their counts as values
-    // e.g. { distance: 4, geofence_in: 7, ... }
-
+    // this turns alertsData into and object with keys as "type" and values as the count of each type.
     function getAlertsDataTypes(alertsData) {
         const dataTypes = {};
         
