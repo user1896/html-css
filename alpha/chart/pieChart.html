@@ -80,7 +80,7 @@
                 // parameters to navigate to the live monitoring page filtered by that status.
                 if (activeElements.length > 0) { // checks if there are any active elements (slices)
                     const index = activeElements[0].index; // Get the index of the clicked slice
-                    const clickedStatus = statusData[index]; // Get the corresponding status of the clicked slice
+                    const clickedStatus = labels[index]; // Get the corresponding status of the clicked slice
                     
                     const params = new URLSearchParams({
                         currentStatus: clickedStatus,
