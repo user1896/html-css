@@ -96,22 +96,10 @@
         },
         options: {
             indexAxis: 'y', // This option makes the bars horizontal instead of vertical
-            onClick: (event, activeElements) => {
-                if (activeElements.length > 0) { // checks if there are any active elements (slices)
-                    const index = activeElements[0].index; // Get the index of the clicked slice
-                    const clickedStatus = labels[index]; // Get the corresponding status of the clicked slice
-                    
-                    const params = new URLSearchParams({
-                        currentStatus: clickedStatus,
-                        // add other parameters as needed
-                    });
-                    window.location.href = `dashboardTemplate.html?${params.toString()}`; // Navigate to the live monitoring page with query parameters
-                }
-            },
             plugins: {
                 title: {
                     display: true,
-                    text: 'Répartition de l\'état des véhicules'
+                    text: 'Analyse de la fréquence des alertes'
                 },
                 legend: {
                     display: false // Hide legend since we have only one dataset
@@ -122,7 +110,7 @@
                     beginAtZero: true, // Ensure the y-axis starts at zero
                     title: {
                         display: true,
-                        text: 'Nombre de véhicules'
+                        text: 'Nombre d\'alertes'
                     }
                 }
             }
