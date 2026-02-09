@@ -18,15 +18,15 @@
             align-items: center;
             height: 100vh;
         }
-        .barChart-container {
+        .barChartHorizontal-container {
             width: 600px;
             height: 300px;
         }
     </style>
 </head>
 <body>
-    <div class="barChart-container">
-        <canvas id="barChart"></canvas>
+    <div class="barChartHorizontal-container">
+        <canvas id="barChartHorizontal"></canvas>
     </div>
 </body>
 <script>
@@ -67,24 +67,19 @@
 
     const alertsDataTypes = getAlertsDataTypes(alertsData); // e.g. { distance: 4, geofence_in: 6, ... }
 
+    const sortedAlertsDataTypes = sortAlertsDescending(alertsDataTypes); // e.g. { geofence_in: 6, distance: 4, ... }
+
     // Extract labels and values dynamically
-    const labels = Object.keys(alertsDataTypes); // ["distance", "geofence_in", "ignition", ...]
-    const dataValues = Object.values(alertsDataTypes); // [4, 6, 2, ...]
+    const labels = Object.keys(sortedAlertsDataTypes); // ["distance", "geofence_in", "ignition", ...]
+    const dataValues = Object.values(sortedAlertsDataTypes); // [6, 4, 2, ...]
+    
+    const ctx = document.getElementById('barChartHorizontal').getContext('2d');
 
-    // this turns alertsData into and object with keys as "type" and values as the count of each type.
-    function getAlertsDataTypes(alertsData) {
-        const dataTypes = {};
-        
-        alertsData.forEach(alert => {
-            const type = alert.type;
-            dataTypes[type] = (dataTypes[type] || 0) + 1;
-        });
-        
-        return dataTypes;
-    }
-
-
-    const ctx = document.getElementById('barChart').getContext('2d');
+    // Create a vertical gradient color for the bars
+    const purpleGradient = ctx.createLinearGradient(0, 0, 0, 400);
+    purpleGradient.addColorStop(0, '#8456CE'); // Top color
+    purpleGradient.addColorStop(1, 'rgba(132, 86, 206, 0.4)'); // Bottom color (faded)
+    
     new Chart(ctx, {
         type: 'bar', // Specify bar chart type
         data: {
@@ -95,12 +90,7 @@
                 // one dataset, it may not be necessary to display it, so below in
                 // "options > plugings" we're hiding the legend.
                 data: dataValues,
-                backgroundColor: [
-                    '#20bf6b',  // online
-                    '#fa8231',  // engine
-                    '#003cff',  // ack
-                    '#ff0000'   // offline
-                ],
+                backgroundColor: purpleGradient,
                 borderWidth: 1
             }]
         },
@@ -138,6 +128,23 @@
             }
         }
     });
-    console.log(Chart.version)
+    
+    // this turns alertsData into and object with keys as "type" and values as the count of each type.
+    function getAlertsDataTypes(alertsData) {
+        const dataTypes = {};
+        
+        alertsData.forEach(alert => {
+            const type = alert.type;
+            dataTypes[type] = (dataTypes[type] || 0) + 1;
+        });
+        
+        return dataTypes;
+    }
+
+    function sortAlertsDescending(obj) {
+        return Object.fromEntries(
+            Object.entries(obj).sort((a, b) => b[1] - a[1])
+        );
+    }
 </script>
 </html>
