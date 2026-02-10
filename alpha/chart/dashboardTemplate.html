@@ -17,8 +17,9 @@
             margin: 0;
         }
 
-        /* Main dashboard layout, statusCard + the two charts */
-        .main-section {
+        /* Main dashboard layout */
+
+        main {
             background-color: rgb(230, 230, 230);
             display: flex;
             flex-direction: column;
@@ -32,19 +33,21 @@
             padding-top: 10px;
         }
 
-        .charts-container {
+        /* Section-1 layout, statusCard + barCHart + pieChart */
+
+        .charts-container-1 {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
         }
         @media (min-width: 815px) {
-            .charts-container {
+            .charts-container-1 {
                 flex-direction: row;
             }
         }
         @media (max-width: 815px) {
-            .charts-container {
+            .charts-container-1 {
                 flex-direction: column;
             }
         }
@@ -120,14 +123,29 @@
         .card-offline {
             background: linear-gradient(135deg, #ff0000, #ff3333);
         }
+
+        /* Section-2 layout, barCHartHorizontal + lineChart */
+        
+        .charts-container-2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .barChartHorizontal-container {
+            width: 500px;
+            height: 300px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="main-section">
+    <main>
         <h2>État des véhicules</h2>
         <div class="status-cards-container"></div>
-        <div class="charts-container">
+        <div class="charts-container-1">
             <div class="pieChart-container">
                 <canvas id="pieChart"></canvas>
             </div>
@@ -135,11 +153,9 @@
                 <canvas id="barChart"></canvas>
             </div>
         </div>
-    </div>
 
-    <div class="main-section">
         <h2>Aperçu des alertes</h2>
-        <div class="charts-container">
+        <div class="charts-container-2">
             <div class="barChartHorizontal-container">
                 <canvas id="barChartHorizontal"></canvas>
             </div>
@@ -147,7 +163,7 @@
                 <canvas id="lineChart"></canvas>
             </div>
         </div>
-    </div>
+    </main>
 </body>
 
 <script>
@@ -498,6 +514,90 @@
                 }
             }
         });
+    }
+
+    const alertsDataTypes = getAlertsDataTypes(alertsData); // e.g. { distance: 4, geofence_in: 6, ... }
+
+    const sortedAlertsDataTypes = sortAlertsDescending(alertsDataTypes); // e.g. { geofence_in: 6, distance: 4, ... }
+
+    // Extract labels and values dynamically
+    const alertsLabels = Object.keys(sortedAlertsDataTypes); // ["distance", "geofence_in", "ignition", ...]
+    const alertsDataValues = Object.values(sortedAlertsDataTypes); // [6, 4, 2, ...]
+
+    let myBarChartHorizontal // store the horizontal bar chart instance
+    renderBarChartHorizontal(alertsLabels, alertsDataValues);
+
+    function renderBarChartHorizontal(alertsLabels, alertsDataValues){
+        const ctxBarHorizontal = document.getElementById('barChartHorizontal').getContext('2d');
+
+        // If chart already exists, update data and redraw
+        if(myBarChartHorizontal) {
+            myBarChartHorizontal.data.labels = dataLabels;
+            myBarChartHorizontal.data.datasets[0].data = dataValues;
+            myBarChartHorizontal.data.datasets[0].backgroundColor = dataColors;
+            myBarChartHorizontal.update(); // Triggers re-render
+            return;
+        }
+
+        // Create a vertical gradient color for the bars
+        const purpleGradient = ctxBarHorizontal.createLinearGradient(0, 0, 0, 400);
+        purpleGradient.addColorStop(0, '#8456CE'); // Top color
+        purpleGradient.addColorStop(1, 'rgba(132, 86, 206, 0.4)'); // Bottom color (faded)
+        
+        myBarChartHorizontal = new Chart(ctxBarHorizontal, {
+            type: 'bar', // Specify bar chart type
+            data: {
+                labels: alertsLabels,
+                datasets: [{
+                    label: 'Status Count', // This dataset label is what Chart.js uses when it generates
+                    // the legend entries and also what appears in tooltips. However, since we have only
+                    // one dataset, it may not be necessary to display it, so below in
+                    // "options > plugings" we're hiding the legend.
+                    data: alertsDataValues,
+                    backgroundColor: purpleGradient,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y', // This option makes the bars horizontal instead of vertical
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Analyse de la fréquence des alertes'
+                    },
+                    legend: {
+                        display: false // Hide legend since we have only one dataset
+                    }
+                },
+                scales: {
+                    x: { // Since the bars are horizontal, the x-axis represents the count of vehicles
+                        beginAtZero: true, // Ensure the y-axis starts at zero
+                        title: {
+                            display: true,
+                            text: 'Nombre d\'alertes'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // this turns alertsData into and object with keys as "type" and values as the count of each type.
+    function getAlertsDataTypes(alertsData) {
+        const dataTypes = {};
+        
+        alertsData.forEach(alert => {
+            const type = alert.type;
+            dataTypes[type] = (dataTypes[type] || 0) + 1;
+        });
+        
+        return dataTypes;
+    }
+
+    function sortAlertsDescending(obj) {
+        return Object.fromEntries(
+            Object.entries(obj).sort((a, b) => b[1] - a[1])
+        );
     }
 </script>
 </html>

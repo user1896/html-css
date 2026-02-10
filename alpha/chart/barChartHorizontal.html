@@ -70,8 +70,8 @@
     const sortedAlertsDataTypes = sortAlertsDescending(alertsDataTypes); // e.g. { geofence_in: 6, distance: 4, ... }
 
     // Extract labels and values dynamically
-    const labels = Object.keys(sortedAlertsDataTypes); // ["distance", "geofence_in", "ignition", ...]
-    const dataValues = Object.values(sortedAlertsDataTypes); // [6, 4, 2, ...]
+    const alertsLabels = Object.keys(sortedAlertsDataTypes); // ["distance", "geofence_in", "ignition", ...]
+    const alertsDataValues = Object.values(sortedAlertsDataTypes); // [6, 4, 2, ...]
     
     const ctx = document.getElementById('barChartHorizontal').getContext('2d');
 
@@ -83,13 +83,13 @@
     new Chart(ctx, {
         type: 'bar', // Specify bar chart type
         data: {
-            labels: labels,
+            labels: alertsLabels,
             datasets: [{
                 label: 'Status Count', // This dataset label is what Chart.js uses when it generates
                 // the legend entries and also what appears in tooltips. However, since we have only
                 // one dataset, it may not be necessary to display it, so below in
                 // "options > plugings" we're hiding the legend.
-                data: dataValues,
+                data: alertsDataValues,
                 backgroundColor: purpleGradient,
                 borderWidth: 1
             }]
