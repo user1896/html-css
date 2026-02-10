@@ -8,6 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <!-- Load Chart.js Data Labels plugin from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <!-- Load Chart.js Date Adapter plugin from CDN to handle date/time on the x-axis -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <!-- Load Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -125,18 +127,21 @@
         }
 
         /* Section-2 layout, barCHartHorizontal + lineChart */
-        
+
         .charts-container-2 {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            gap: 20px;
+            flex-direction: row;
+            gap: 10px;
         }
 
         .barChartHorizontal-container {
-            width: 500px;
-            height: 300px;
+            width: 450px;
+        }
+
+        .lineChart-container {
+            width: 450px;
         }
     </style>
 </head>
@@ -598,6 +603,84 @@
         return Object.fromEntries(
             Object.entries(obj).sort((a, b) => b[1] - a[1])
         );
+    }
+
+    // # Line Chart
+
+    const alertsDataTime = alertsData.map(item => {
+        return {
+            occurred_at: item.occurred_at
+        };
+    });
+
+    const chartData = getAlertsByHour(alertsDataTime);
+    // → [{ x: "2026-02-04T12", y: 1 }, { x: "2026-02-04T15", y: 4 }]
+
+    let myLineChart // store the line chart instance
+    renderLineChart(chartData);
+
+    function renderLineChart(chartData) {
+        const ctxLine = document.getElementById('lineChart').getContext('2d');
+
+        // If chart already exists, update data and redraw
+        if(myLineChart) {
+            myLineChart.data.labels = dataLabels;
+            myLineChart.data.datasets[0].data = dataValues;
+            myLineChart.data.datasets[0].backgroundColor = dataColors;
+            myLineChart.update(); // Triggers re-render
+            return;
+        }
+        
+        myLineChart = new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Number of Alerts',
+                    data: chartData,
+                    fill: false, // if you want to fill the area under the line, set this to true and add a backgroundColor property with the desired color
+                    borderColor: '#8456CE',
+                    tension: 0.1 // Adjust the tension for smoother or sharper curves (0 for straight lines, higher values for more curvature)
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Nombre d\'alertes par heure'
+                    },
+                    legend: {
+                        display: false // Hide legend since we have only one dataset
+                    }
+                },
+                scales: {
+                    x: { type: 'time', time: { unit: 'hour' } },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Nombre d\'alertes'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function getAlertsByHour(alertsDataTime) {
+        const hourly = {};
+        alertsDataTime.forEach(dataTime => {
+            // Extract the hour from the "occurred_at" timestamp (e.g. "2026-02-04T17:20:06.000000Z" → "2026-02-04T17")
+            const date = new Date(dataTime.occurred_at);
+            const hour = date.toISOString().slice(0, 13);  // YYYY-MM-DDTHH
+            
+            // Count the number of alerts for each hour
+            hourly[hour] = (hourly[hour] || 0) + 1;
+        });
+
+        return Object.entries(hourly)
+            .sort((a, b) => a[0].localeCompare(b[0])) // Sort the entries by hour in ascending order
+            .map(([label, count]) => ({ x: label, y: count })); // Convert to the format required by Chart.js (e.g. [{ x: "2026-02-04T17", y: 2 }, ...])
+        // {"2026-02-05T07": 3, ...} becomes [{ x: "2026-02-05T07", y: 3 }, ...]
     }
 </script>
 </html>

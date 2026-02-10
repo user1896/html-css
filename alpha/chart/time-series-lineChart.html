@@ -15,6 +15,7 @@
             margin: 0;
         }
         body {
+            background-color: rgb(244, 227, 206);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -139,32 +140,8 @@
     });
     // e.g. [{ occurred_at: "2026-02-04T17:20:06.000000Z"}, {occurred_at: "2026-02-04T17:38:06.000000Z", ... }]
     // if we don't need other properties like "id", we can directly create an array of "occurred_at" values instead of an array of objects with "occurred_at" property, i.e. ["2026-02-04T17:20:06.000000Z", "2026-02-04T17:38:06.000000Z", ...]
-    
-    function getAlertsByHour(alertsDataTime) {
-        const hourly = {};
-        alertsDataTime.forEach(dataTime => {
-            // Extract the hour from the "occurred_at" timestamp (e.g. "2026-02-04T17:20:06.000000Z" → "2026-02-04T17")
-            const date = new Date(dataTime.occurred_at);
-            const hour = date.toISOString().slice(0, 13);  // YYYY-MM-DDTHH
-            
-            // Count the number of alerts for each hour
-            hourly[hour] = (hourly[hour] || 0) + 1;
-        });
 
-        return Object.entries(hourly)
-            .sort((a, b) => a[0].localeCompare(b[0])) // Sort the entries by hour in ascending order
-            .map(([label, count]) => ({ x: label, y: count })); // Convert to the format required by Chart.js (e.g. [{ x: "2026-02-04T17", y: 2 }, ...])
-        // {"2026-02-05T07": 3, ...} becomes [{ x: "2026-02-05T07", y: 3 }, ...]
-    }
-
-    // Usage:
-    const chartData = getAlertsByHour(alertsDataTime);
-    // → [{ x: "2026-02-04T12", y: 1 }, { x: "2026-02-04T15", y: 4 }]
-    console.log(chartData);
-
-    // Extract labels and values dynamically
-    const labels = Object.keys(alertsDataTime); // ["distance", "geofence_in", "ignition", ...]
-    const dataValues = Object.values(alertsDataTime); // [6, 4, 2, ...]
+    const chartData = getAlertsByHour(alertsDataTime); // → [{ x: "2026-02-04T12", y: 1 }, { x: "2026-02-04T15", y: 4 }]
     
     const ctx = document.getElementById('lineChart').getContext('2d');
     
@@ -201,5 +178,22 @@
             }
         }
     });
+
+    function getAlertsByHour(alertsDataTime) {
+        const hourly = {};
+        alertsDataTime.forEach(dataTime => {
+            // Extract the hour from the "occurred_at" timestamp (e.g. "2026-02-04T17:20:06.000000Z" → "2026-02-04T17")
+            const date = new Date(dataTime.occurred_at);
+            const hour = date.toISOString().slice(0, 13);  // YYYY-MM-DDTHH
+            
+            // Count the number of alerts for each hour
+            hourly[hour] = (hourly[hour] || 0) + 1;
+        });
+
+        return Object.entries(hourly)
+            .sort((a, b) => a[0].localeCompare(b[0])) // Sort the entries by hour in ascending order
+            .map(([label, count]) => ({ x: label, y: count })); // Convert to the format required by Chart.js (e.g. [{ x: "2026-02-04T17", y: 2 }, ...])
+        // {"2026-02-05T07": 3, ...} becomes [{ x: "2026-02-05T07", y: 3 }, ...]
+    }
 </script>
 </html>
