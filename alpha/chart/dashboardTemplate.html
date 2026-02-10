@@ -132,16 +132,32 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: row;
             gap: 10px;
+            background-color: #fa8231;
+        }
+        @media (min-width: 900px) {
+            .charts-container-2 {
+                flex-direction: row;
+            }
+        }
+        @media (max-width: 900px) {
+            .charts-container-2 {
+                flex-direction: column;
+            }
         }
 
-        .barChartHorizontal-container {
-            width: 450px;
+        @media (min-width: 900px) {
+            .barChartHorizontal-container, .lineChart-container {
+                width: 445px;
+                /* min-width: 0; */
+                height: 230px;
+            }
         }
-
-        .lineChart-container {
-            width: 450px;
+        @media (max-width: 900px) {
+            .barChartHorizontal-container, .lineChart-container {
+                width: 600px;
+                height: 290px;
+            }
         }
     </style>
 </head>
@@ -564,6 +580,8 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 indexAxis: 'y', // This option makes the bars horizontal instead of vertical
                 plugins: {
                     title: {
@@ -643,6 +661,8 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     title: {
                         display: true,
