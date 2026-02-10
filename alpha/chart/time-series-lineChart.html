@@ -35,13 +35,13 @@
     const alertsData = [ // similar to "events.data" in the events' index page in ostool, but with only "occurred_at" and "id" properties for simplicity
         {
             "id": 315,
-            "occurred_at": "2026-02-04T07:36:07.000000Z"
+            "occurred_at": "2026-02-05T07:36:07.000000Z"
         },{
             "id": 312,
             "occurred_at": "2026-02-04T07:49:27.000000Z"
         },{
             "id": 314,
-            "occurred_at": "2026-02-04T07:52:47.000000Z"
+            "occurred_at": "2026-02-05T07:52:47.000000Z"
         },{
             "id": 313,
             "occurred_at": "2026-02-04T08:32:27.000000Z"
@@ -125,7 +125,7 @@
             "occurred_at": "2026-02-04T16:36:56.000000Z"
         },{
             "id": 301,
-            "occurred_at": "2026-02-04T17:20:06.000000Z"
+            "occurred_at": "2026-02-05T17:20:06.000000Z"
         },{
             "id": 295,
             "occurred_at": "2026-02-04T17:38:06.000000Z"
@@ -150,14 +150,15 @@
             // Count the number of alerts for each hour
             hourly[hour] = (hourly[hour] || 0) + 1;
         });
+
         return Object.entries(hourly)
-            .sort((a, b) => new Date(a[0]) - new Date(b[0])) // Sort the entries by hour in ascending order
+            .sort((a, b) => a[0].localeCompare(b[0])) // Sort the entries by hour in ascending order
             .map(([label, count]) => ({ x: label, y: count })); // Convert to the format required by Chart.js (e.g. [{ x: "2026-02-04T17", y: 2 }, ...])
         // {"2026-02-05T07": 3, ...} becomes [{ x: "2026-02-05T07", y: 3 }, ...]
     }
 
     // Usage:
-    const chartData = getAlertsByHour(alertsData);
+    const chartData = getAlertsByHour(alertsDataTime);
     // → [{ x: "2026-02-04T12", y: 1 }, { x: "2026-02-04T15", y: 4 }]
     console.log(chartData);
 
@@ -182,7 +183,7 @@
             plugins: {
                 title: {
                     display: true,
-                    text: 'Number of Alerts per Hour'
+                    text: 'Nombre d\'alertes par heure'
                 },
                 legend: {
                     display: false // Hide legend since we have only one dataset
