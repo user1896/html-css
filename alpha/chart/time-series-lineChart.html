@@ -179,6 +179,15 @@
             }]
         },
         options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Number of Alerts per Hour'
+                },
+                legend: {
+                    display: false // Hide legend since we have only one dataset
+                }
+            },
             scales: {
                 x: { type: 'time', time: { unit: 'hour' } },
                 y: {
