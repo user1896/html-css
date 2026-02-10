@@ -133,7 +133,6 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            background-color: #fa8231;
         }
         @media (min-width: 900px) {
             .charts-container-2 {
@@ -146,17 +145,23 @@
             }
         }
 
+        /* Base styles for <560px (adjust as needed) */
+        .barChartHorizontal-container, .lineChart-container {
+            width: 420px;
+            height: 230px;
+        }
+        /* Mid-range: 560px to 900px */
+        @media (min-width: 560px) {
+            .barChartHorizontal-container, .lineChart-container {
+                width: 550px;
+                height: 260px;
+            }
+        }
+        /* Large screens: 900px+ */
         @media (min-width: 900px) {
             .barChartHorizontal-container, .lineChart-container {
                 width: 445px;
-                /* min-width: 0; */
                 height: 230px;
-            }
-        }
-        @media (max-width: 900px) {
-            .barChartHorizontal-container, .lineChart-container {
-                width: 600px;
-                height: 290px;
             }
         }
     </style>
