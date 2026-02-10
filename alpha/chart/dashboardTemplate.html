@@ -178,6 +178,138 @@
         }
     };
 
+    const alertsData = [ // similar to "events.data" in the events' index page in ostool, but with only "occurred_at" and "id" properties for simplicity
+        {
+            "id": 315,
+            "type": "distance",
+            "occurred_at": "2026-02-05T07:36:07.000000Z"
+        },{
+            "id": 312,
+            "type": "distance",
+            "occurred_at": "2026-02-04T07:49:27.000000Z"
+        },{
+            "id": 314,
+            "type": "distance",
+            "occurred_at": "2026-02-05T07:52:47.000000Z"
+        },{
+            "id": 313,
+            "type": "distance",
+            "occurred_at": "2026-02-04T08:32:27.000000Z"
+        },{
+            "id": 791,
+            "type": "geofence_in",
+            "occurred_at": "2026-02-04T08:35:16.000000Z"
+        },{
+            "id": 311,
+            "type": "geofence_in",
+            "occurred_at": "2026-02-04T09:14:56.000000Z"
+        },{
+            "id": 892,
+            "type": "geofence_in",
+            "occurred_at": "2026-02-04T09:36:16.000000Z"
+        },{
+            "id": 309,
+            "type": "geofence_in",
+            "occurred_at": "2026-02-04T10:07:46.000000Z"
+        },{
+            "id": 310,
+            "type": "geofence_in",
+            "occurred_at": "2026-02-04T10:09:36.000000Z"
+        },{
+            "id": 294,
+            "type": "geofence_in",
+            "occurred_at": "2026-02-04T10:37:06.000000Z"
+        },{
+            "id": 293,
+            "type": "geofence_inout",
+            "occurred_at": "2026-02-04T11:36:46.000000Z"
+        },{
+            "id": 296,
+            "type": "geofence_inout",
+            "occurred_at": "2026-02-04T11:38:36.000000Z"
+        },{
+            "id": 299,
+            "type": "geofence_out",
+            "occurred_at": "2026-02-04T12:13:06.000000Z"
+        },{
+            "id": 303,
+            "type": "geofence_out",
+            "occurred_at": "2026-02-04T12:30:56.000000Z"
+        },{
+            "id": 300,
+            "type": "geofence_out",
+            "occurred_at": "2026-02-04T14:16:26.000000Z"
+        },{
+            "id": 304,
+            "type": "geofence_out",
+            "occurred_at": "2026-02-04T14:33:46.000000Z"
+        },{
+            "id": 305,
+            "type": "geofence_out",
+            "occurred_at": "2026-02-04T14:36:46.000000Z"
+        },{
+            "id": 298,
+            "type": "geofence_out",
+            "occurred_at": "2026-02-04T15:10:36.000000Z"
+        },{
+            "id": 297,
+            "type": "idle_duration",
+            "occurred_at": "2026-02-04T15:20:06.000000Z"
+        },{
+            "id": 693,
+            "type": "idle_duration",
+            "occurred_at": "2026-02-04T15:30:16.000000Z"
+        },{
+            "id": 392,
+            "type": "idle_duration",
+            "occurred_at": "2026-02-04T15:35:16.000000Z"
+        },{
+            "id": 591,
+            "type": "ignition",
+            "occurred_at": "2026-02-04T12:40:16.000000Z"
+        },{
+            "id": 391,
+            "type": "ignition",
+            "occurred_at": "2026-02-04T15:45:16.000000Z"
+        },{
+            "id": 493,
+            "type": "ignition",
+            "occurred_at": "2026-02-04T15:50:16.000000Z"
+        },{
+            "id": 492,
+            "type": "ignition",
+            "occurred_at": "2026-02-04T15:55:16.000000Z"
+        },{
+            "id": 491,
+            "type": "ignition_duration",
+            "occurred_at": "2026-02-04T15:59:16.000000Z"
+        },{
+            "id": 308,
+            "type": "ignition_duration",
+            "occurred_at": "2026-02-04T16:10:26.000000Z"
+        },{
+            "id": 307,
+            "type": "ignition_duration",
+            "occurred_at": "2026-02-04T16:20:36.000000Z"
+        },{
+            "id": 306,
+            "type": "move_duration",
+            "occurred_at": "2026-02-04T16:30:26.000000Z"
+        },{
+            "id": 302,
+            "type": "move_duration",
+            "occurred_at": "2026-02-04T16:36:56.000000Z"
+        },{
+            "id": 301,
+            "type": "move_duration",
+            "occurred_at": "2026-02-05T17:20:06.000000Z"
+        },{
+            "id": 295,
+            "type": "move_duration",
+            "occurred_at": "2026-02-04T17:38:06.000000Z"
+        }
+    ]
+
     // Extract status, values, colors, and icons dynamically, so later we just change the statusData to update all charts and cards for a new dashboard
     const status = Object.keys(statusData); // ["online", "engine", "ack", "offline"]
     const dataLabels = Object.values(statusData).map(item => item.label); // ['En mouvement', 'Non confirmé', 'À l\'arrêt - Confirmé', 'Hors ligne']
