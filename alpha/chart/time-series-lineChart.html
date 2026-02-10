@@ -6,6 +6,8 @@
     <title>Document</title>
     <!-- Load Chart.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <!-- Load Chart.js Date Adapter plugin from CDN to handle date/time on the x-axis -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <style>
         * {
             box-sizing: border-box; /* Include padding and border in element's total width and height */
@@ -162,5 +164,32 @@
     // Extract labels and values dynamically
     const labels = Object.keys(alertsDataTime); // ["distance", "geofence_in", "ignition", ...]
     const dataValues = Object.values(alertsDataTime); // [6, 4, 2, ...]
+    
+    const ctx = document.getElementById('lineChart').getContext('2d');
+    
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Number of Alerts',
+                data: chartData,
+                fill: false, // if you want to fill the area under the line, set this to true and add a backgroundColor property with the desired color
+                borderColor: '#8456CE',
+                tension: 0.1 // Adjust the tension for smoother or sharper curves (0 for straight lines, higher values for more curvature)
+            }]
+        },
+        options: {
+            scales: {
+                x: { type: 'time', time: { unit: 'hour' } },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Nombre d\'alertes'
+                    }
+                }
+            }
+        }
+    });
 </script>
 </html>
