@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Load Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <style>
+        * {
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .lineChart-container {
+            width: 600px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lineChart-container">
+        <canvas id="lineChart"></canvas>
+    </div>
+</body>
+<script>
+    const alertsData = [ // similar to "events.data" in the events' index page in ostool, but with only "occurred_at" and "id" properties for simplicity
+        {
+            "id": 315,
+            "occurred_at": "2026-02-04T07:36:07.000000Z"
+        },{
+            "id": 312,
+            "occurred_at": "2026-02-04T07:49:27.000000Z"
+        },{
+            "id": 314,
+            "occurred_at": "2026-02-04T07:52:47.000000Z"
+        },{
+            "id": 313,
+            "occurred_at": "2026-02-04T08:32:27.000000Z"
+        },{
+            "id": 791,
+            "occurred_at": "2026-02-04T08:35:16.000000Z"
+        },{
+            "id": 311,
+            "occurred_at": "2026-02-04T09:14:56.000000Z"
+        },{
+            "id": 892,
+            "occurred_at": "2026-02-04T09:36:16.000000Z"
+        },{
+            "id": 309,
+            "occurred_at": "2026-02-04T10:07:46.000000Z"
+        },{
+            "id": 310,
+            "occurred_at": "2026-02-04T10:09:36.000000Z"
+        },{
+            "id": 294,
+            "occurred_at": "2026-02-04T10:37:06.000000Z"
+        },{
+            "id": 293,
+            "occurred_at": "2026-02-04T11:36:46.000000Z"
+        },{
+            "id": 296,
+            "occurred_at": "2026-02-04T11:38:36.000000Z"
+        },{
+            "id": 299,
+            "occurred_at": "2026-02-04T12:13:06.000000Z"
+        },{
+            "id": 303,
+            "occurred_at": "2026-02-04T12:30:56.000000Z"
+        },{
+            "id": 300,
+            "occurred_at": "2026-02-04T14:16:26.000000Z"
+        },{
+            "id": 304,
+            "occurred_at": "2026-02-04T14:33:46.000000Z"
+        },{
+            "id": 305,
+            "occurred_at": "2026-02-04T14:36:46.000000Z"
+        },{
+            "id": 298,
+            "occurred_at": "2026-02-04T15:10:36.000000Z"
+        },{
+            "id": 297,
+            "occurred_at": "2026-02-04T15:20:06.000000Z"
+        },{
+            "id": 693,
+            "occurred_at": "2026-02-04T15:30:16.000000Z"
+        },{
+            "id": 392,
+            "occurred_at": "2026-02-04T15:35:16.000000Z"
+        },{
+            "id": 591,
+            "occurred_at": "2026-02-04T12:40:16.000000Z"
+        },{
+            "id": 391,
+            "occurred_at": "2026-02-04T15:45:16.000000Z"
+        },{
+            "id": 493,
+            "occurred_at": "2026-02-04T15:50:16.000000Z"
+        },{
+            "id": 492,
+            "occurred_at": "2026-02-04T15:55:16.000000Z"
+        },{
+            "id": 491,
+            "occurred_at": "2026-02-04T15:59:16.000000Z"
+        },{
+            "id": 308,
+            "occurred_at": "2026-02-04T16:10:26.000000Z"
+        },{
+            "id": 307,
+            "occurred_at": "2026-02-04T16:20:36.000000Z"
+        },{
+            "id": 306,
+            "occurred_at": "2026-02-04T16:30:26.000000Z"
+        },{
+            "id": 302,
+            "occurred_at": "2026-02-04T16:36:56.000000Z"
+        },{
+            "id": 301,
+            "occurred_at": "2026-02-04T17:20:06.000000Z"
+        },{
+            "id": 295,
+            "occurred_at": "2026-02-04T17:38:06.000000Z"
+        }
+    ]
+
+    const alertsDataTime = alertsData.map(item => {
+        return {
+            occurred_at: item.occurred_at
+        };
+    });
+    // e.g. [{ occurred_at: "2026-02-04T17:20:06.000000Z"}, {occurred_at: "2026-02-04T17:38:06.000000Z", ... }]
+    // if we don't need other properties like "id", we can directly create an array of "occurred_at" values instead of an array of objects with "occurred_at" property, i.e. ["2026-02-04T17:20:06.000000Z", "2026-02-04T17:38:06.000000Z", ...]
+    
+    function getAlertsByHour(alertsDataTime) {
+        const hourly = {};
+        alertsDataTime.forEach(dataTime => {
+            // Extract the hour from the "occurred_at" timestamp (e.g. "2026-02-04T17:20:06.000000Z" → "2026-02-04T17")
+            const date = new Date(dataTime.occurred_at);
+            const hour = date.toISOString().slice(0, 13);  // YYYY-MM-DDTHH
+            
+            // Count the number of alerts for each hour
+            hourly[hour] = (hourly[hour] || 0) + 1;
+        });
+        return Object.entries(hourly)
+            .sort((a, b) => new Date(a[0]) - new Date(b[0])) // Sort the entries by hour in ascending order
+            .map(([label, count]) => ({ x: label, y: count })); // Convert to the format required by Chart.js (e.g. [{ x: "2026-02-04T17", y: 2 }, ...])
+        // {"2026-02-05T07": 3, ...} becomes [{ x: "2026-02-05T07", y: 3 }, ...]
+    }
+
+    // Usage:
+    const chartData = getAlertsByHour(alertsData);
+    // → [{ x: "2026-02-04T12", y: 1 }, { x: "2026-02-04T15", y: 4 }]
+    console.log(chartData);
+
+    // Extract labels and values dynamically
+    const labels = Object.keys(alertsDataTime); // ["distance", "geofence_in", "ignition", ...]
+    const dataValues = Object.values(alertsDataTime); // [6, 4, 2, ...]
+</script>
+</html>
