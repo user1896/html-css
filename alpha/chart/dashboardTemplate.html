@@ -18,7 +18,7 @@
         }
 
         /* Main dashboard layout, statusCard + the two charts */
-        main {
+        .main-section {
             background-color: rgb(230, 230, 230);
             display: flex;
             flex-direction: column;
@@ -122,8 +122,9 @@
         }
     </style>
 </head>
+
 <body>
-    <main>
+    <div class="main-section">
         <h2>État des véhicules</h2>
         <div class="status-cards-container"></div>
         <div class="charts-container">
@@ -134,8 +135,21 @@
                 <canvas id="barChart"></canvas>
             </div>
         </div>
-    </main>
+    </div>
+
+    <div class="main-section">
+        <h2>Aperçu des alertes</h2>
+        <div class="charts-container">
+            <div class="barChartHorizontal-container">
+                <canvas id="barChartHorizontal"></canvas>
+            </div>
+            <div class="lineChart-container">
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
+    </div>
 </body>
+
 <script>
     const statusData = {
         "online": {
