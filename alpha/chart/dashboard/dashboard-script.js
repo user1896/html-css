@@ -177,19 +177,19 @@ function renderBarChart(dataLabels, dataValues, dataColors) {
 function renderBarChartHorizontal(alertsLabels, alertsDataValues){
     const ctxBarHorizontal = document.getElementById('barChartHorizontal').getContext('2d');
 
-    // If chart already exists, update data and redraw
-    if(myBarChartHorizontal) {
-        myBarChartHorizontal.data.labels = dataLabels;
-        myBarChartHorizontal.data.datasets[0].data = dataValues;
-        myBarChartHorizontal.data.datasets[0].backgroundColor = dataColors;
-        myBarChartHorizontal.update(); // Triggers re-render
-        return;
-    }
-
     // Create a vertical gradient color for the bars
     const purpleGradient = ctxBarHorizontal.createLinearGradient(0, 0, 0, 400);
     purpleGradient.addColorStop(0, '#8456CE'); // Top color
     purpleGradient.addColorStop(1, 'rgba(132, 86, 206, 0.4)'); // Bottom color (faded)
+
+    // If chart already exists, update data and redraw
+    if(myBarChartHorizontal) {
+        myBarChartHorizontal.data.labels = alertsLabels;
+        myBarChartHorizontal.data.datasets[0].data = alertsDataValues;
+        myBarChartHorizontal.data.datasets[0].backgroundColor = purpleGradient;
+        myBarChartHorizontal.update(); // Triggers re-render
+        return;
+    }
     
     myBarChartHorizontal = new Chart(ctxBarHorizontal, {
         type: 'bar', // Specify bar chart type
@@ -255,9 +255,9 @@ function renderLineChart(chartData) {
 
     // If chart already exists, update data and redraw
     if(myLineChart) {
-        myLineChart.data.labels = dataLabels;
-        myLineChart.data.datasets[0].data = dataValues;
-        myLineChart.data.datasets[0].backgroundColor = dataColors;
+        // myLineChart.data.labels = dataLabels;
+        myLineChart.data.datasets[0].data = chartData;
+        myLineChart.data.datasets[0].backgroundColor = '#8456CE';
         myLineChart.update(); // Triggers re-render
         return;
     }
