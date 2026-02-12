@@ -45,12 +45,18 @@ h2 {
 }
 
 .barChart-container {
-    /* Base styles for <560px (adjust as needed) */
-    width: 400px;
-    height: 290px;
+    /* Base styles for <450px (adjust as needed) */
+    width: 320px;
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+@media (min-width: 450px) {
+    .barChart-container {
+        width: 400px;
+        height: 290px;
+    }
 }
 @media (min-width: 560px) {
     .barChart-container {
@@ -137,10 +143,31 @@ h2 {
     }
 }
 
-/* Base styles for <560px (adjust as needed) */
+.barChart-container {
+    /* Base styles for <450px (adjust as needed) */
+    width: 320px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (min-width: 450px) {
+    .barChart-container {
+        width: 400px;
+        height: 290px;
+    }
+}
+
+/* Base styles for <450px (adjust as needed) */
 .barChartHorizontal-container, .lineChart-container {
-    width: 420px;
+    width: 320px;
     height: 230px;
+}
+@media (min-width: 450px) {
+    .barChartHorizontal-container, .lineChart-container {
+        width: 420px;
+        height: 230px;
+    }
 }
 /* Mid-range: 560px to 900px */
 @media (min-width: 560px) {
