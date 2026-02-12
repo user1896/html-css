@@ -45,11 +45,18 @@ h2 {
 }
 
 .barChart-container {
-    width: 500px;
-    height: 370px;
+    /* Base styles for <560px (adjust as needed) */
+    width: 400px;
+    height: 290px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+@media (min-width: 560px) {
+    .barChart-container {
+        width: 500px;
+        height: 370px;
+    }
 }
 
 /* statusCard style */
